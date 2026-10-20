@@ -1,0 +1,1099 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>House of J&amp;S | Inspire Computing Year 7</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#c79b3b;--gold-light:#f5eddb;--ink:#282720;--muted:#5f5a50;
+  --line:#e9e2d3;--paper:#fbf9f4;--white:#fff;
+  --good:#236747;--good-bg:#eaf5ee;--bad:#a03c34;--bad-bg:#fbefed;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.7;font-size:16px}
+button{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--white);border-radius:9px;padding:13px 20px;font-size:15px;font-weight:500;transition:border-color .15s,background .15s}
+button:hover{border-color:var(--gold)}
+button:disabled{opacity:.4;cursor:not-allowed}
+header{position:sticky;top:0;z-index:9;background:var(--white);border-bottom:1px solid var(--line);padding:16px clamp(18px,5vw,72px);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.brand{display:flex;gap:14px;align-items:center;min-width:0}
+.brand img{width:52px;height:52px;object-fit:contain;flex-shrink:0}
+.brand small{display:block;color:#a47c25;font-size:11px;letter-spacing:1.5px;font-weight:700}
+.brand b{display:block;font:700 24px 'Playfair Display',serif;white-space:nowrap}
+.brand span{display:block;font-size:12px;letter-spacing:1px;color:#777;text-transform:uppercase}
+nav{display:flex;gap:6px;flex-wrap:wrap}
+nav button{border:0;color:#655f53;background:transparent;font-size:14px;padding:10px 14px}
+nav button.active{background:var(--gold-light);color:#926c1e;font-weight:700}
+#menu{display:none;font-size:22px;padding:8px 16px}
+.welcome{display:flex;align-items:center;gap:10px;font-size:13px;color:#926c1e;font-weight:600;margin-left:auto;margin-right:12px;white-space:nowrap;background:var(--gold-light);padding:8px 16px;border-radius:24px}
+.welcome .dot{width:10px;height:10px;border-radius:50%;background:#4caf50;box-shadow:0 0 0 3px #4caf5033}
+.welcome button{font-size:12px;padding:5px 12px;background:#fff;border-color:#e5dcc8;border-radius:20px}
+main{max-width:1440px;margin:auto}
+#hero{padding:60px clamp(20px,8vw,120px);display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center;background:radial-gradient(circle at 80% 15%,#f5e9ca 0,transparent 32%),linear-gradient(120deg,#fff,#fbf8ef);min-height:460px}
+label,.kicker{color:#9b7425;letter-spacing:1.5px;font-size:12px;font-weight:700}
+h1{font:800 clamp(46px,5.5vw,72px)/1.05 'Playfair Display',serif;letter-spacing:-1px;margin:25px 0 20px}
+h1 em{color:#b4872b;font-style:normal}
+#hero p{font-size:17px;color:var(--muted);line-height:1.8;max-width:540px}
+.gold{background:var(--gold);color:white;border-color:var(--gold);box-shadow:0 6px 15px #c79b3b30}
+.meta{font-size:13px!important}
+.art{min-height:300px;position:relative;display:grid;place-items:center}
+.sun{position:absolute;width:270px;height:270px;border-radius:50%;background:linear-gradient(135deg,#f5df9c,#c99c3c);right:8%;top:0}
+.artcard{z-index:1;background:#282923;color:white;padding:25px 30px;width:290px;min-height:300px;box-shadow:17px 20px 0 #d8bd78;transform:rotate(2deg)}
+.artcard small{color:#dfc47e;letter-spacing:1.5px;font-size:11px}
+.symbol{font-size:60px;color:#d9b456;margin-top:28px}
+.artcard h2{font:700 36px/1.1 'Playfair Display',serif;margin:0 0 18px}
+.artcard hr{width:45px;margin-left:0;border:0;height:2px;background:#d7b052}
+.artcard p{font-size:13px!important;color:#ccc!important}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);margin:0 clamp(20px,8vw,120px);background:white;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.stats div{text-align:center;padding:22px;border-right:1px solid var(--line)}
+.stats div:last-child{border:0}
+.stats b{display:block;font:700 30px 'Playfair Display',serif;color:#a77d25}
+.stats span{font-size:13px;color:var(--muted)}
+#view{padding:55px clamp(18px,8vw,120px) 80px;min-height:420px}
+.head{margin-bottom:28px}
+.head h2{font:700 42px 'Playfair Display',serif;margin:10px 0}
+.head p,.muted{font-size:15px;line-height:1.8;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card,.panel{background:white;border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:18px}
+.card{display:flex;flex-direction:column;min-height:220px}
+.num{background:var(--gold-light);color:#a47b25;border-radius:9px;padding:10px 16px;width:max-content;font-size:13px;font-weight:700;letter-spacing:.5px}
+.card h3,.lesson h3{font:700 24px 'Playfair Display',serif;margin:16px 0 8px;line-height:1.3}
+.card p{font-size:15px;color:var(--muted);line-height:1.7;flex:1}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.tabs button{font-size:13px;padding:10px 16px}
+.tabs button.active{background:#292a24;color:white;border-color:#292a24}
+.lesson{border:1px solid #eee6d6;padding:20px;border-radius:10px;margin:12px 0}
+.lesson p{font-size:16px;line-height:1.85;color:#5f5a50;margin:0}
+.vocab{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.word{background:#faf7ef;border:1px solid #f0e7d4;padding:16px;border-radius:9px;font-size:15px;line-height:1.6}
+.word b{display:block;color:#926c1e;margin-bottom:6px;font-size:16px}
+.callout{padding:16px 20px;background:#f7f0de;border-left:4px solid var(--gold);font-size:15px;line-height:1.7;color:#6d592b;margin:18px 0;border-radius:6px}
+.q{border:1px solid var(--line);background:white;border-radius:12px;padding:22px;margin:14px 0}
+.qtop{font-size:12px;letter-spacing:.8px;color:#987128;font-weight:700;margin-bottom:14px;line-height:1.6}
+.q h3{font-size:17px;line-height:1.65;margin:0 0 14px;font-weight:600}
+.options{display:grid;gap:10px}
+.opt{border:1px solid var(--line);border-radius:9px;padding:13px 16px;font-size:15px;display:flex;gap:10px;align-items:center;cursor:pointer;line-height:1.5}
+.opt:hover{background:#fbf8ef;border-color:#d9c99a}
+.opt input{accent-color:#b68a2d;width:18px;height:18px;flex-shrink:0}
+.q input[type=text],.q textarea,.q select{width:100%;padding:13px 16px;border:1.5px solid #ded6c5;border-radius:9px;background:#fffdf9;font:15px 'DM Sans',sans-serif;line-height:1.5}
+.q input[type=text]:focus,.q textarea:focus,.q select:focus{outline:none;border-color:var(--gold);background:#fff}
+.q textarea{min-height:90px;resize:vertical}
+.pairs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pairs .word{font-size:15px}
+.pairs .word select{margin-top:6px;font-size:14px;padding:10px 12px}
+.feedback{padding:14px 16px;border-radius:8px;font-size:14px;line-height:1.7;margin-top:14px}
+.good{background:var(--good-bg);color:var(--good)}
+.bad{background:var(--bad-bg);color:var(--bad)}
+.timer{background:#282923;color:#f4d783;padding:14px 22px;border-radius:10px;font-weight:700;font-size:22px;letter-spacing:2px}
+.bar{height:8px;background:#eee7d8;border-radius:9px;overflow:hidden;margin:18px 0}
+.bar span{display:block;background:var(--gold);height:100%;transition:width .3s}
+.result{font:700 56px 'Playfair Display',serif;color:#a77d25}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.three div{background:#faf7ef;border-radius:9px;padding:18px}
+.three b{display:block;font-size:26px}
+.three span{font-size:12px;color:var(--muted)}
+.hidden{display:none!important}
+footer{background:#25261f;color:white;padding:36px clamp(20px,8vw,120px);display:grid;grid-template-columns:1fr 1fr;gap:16px 25px}
+footer b{font:700 24px 'Playfair Display',serif}
+footer span{color:#c9b77f;text-transform:uppercase;font-size:12px}
+footer p{font-size:14px;color:#ccc;margin:0;line-height:1.6}
+.links{display:flex;gap:18px;flex-wrap:wrap}
+.links a{font-size:13px;color:#e5cd88;text-decoration:none}
+.links a:hover{text-decoration:underline}
+footer small{grid-column:1/-1;border-top:1px solid #ffffff22;padding-top:16px;color:#aaa;font-size:12px;line-height:1.6}
+.login-overlay{position:fixed;inset:0;background:radial-gradient(circle at 50% 0%,#f5e9ca 0,transparent 45%),#fbf9f4;display:flex;align-items:center;justify-content:center;z-index:999;padding:20px}
+.login-overlay.hidden{display:none}
+.login-box{background:#fff;border:1px solid var(--line);border-radius:20px;padding:44px 38px;max-width:460px;width:100%;text-align:center;box-shadow:0 25px 70px rgba(0,0,0,0.12)}
+.login-box img{width:80px;height:80px;object-fit:contain;margin-bottom:10px}
+.login-box .kicker{display:block;margin-bottom:8px;font-size:12px}
+.login-box h2{font:700 34px 'Playfair Display',serif;margin:0 0 8px;color:var(--ink)}
+.login-box p{font-size:15px;color:var(--muted);margin:0 0 26px;line-height:1.6}
+.login-box input{width:100%;padding:15px 18px;border:1.5px solid var(--line);border-radius:11px;font:16px 'DM Sans',sans-serif;margin-bottom:14px;background:#fffdf9}
+.login-box input:focus{outline:none;border-color:var(--gold);background:#fff;box-shadow:0 0 0 4px #c79b3b15}
+.login-box .gold{width:100%;padding:16px;font-weight:700;font-size:16px;margin-top:6px}
+.login-error{color:var(--bad);font-size:14px;min-height:20px;margin-bottom:8px;font-weight:600}
+.login-hint{font-size:13px;color:#a47c25;margin-top:20px;letter-spacing:.3px;line-height:1.5}
+.review-q{margin:16px 0}
+.review-block{margin-top:16px}
+.review-line{display:flex;gap:14px;padding:12px 0;border-bottom:1px dashed #eee6d6;font-size:15px;align-items:flex-start;flex-wrap:wrap}
+.review-line:last-child{border-bottom:0}
+.review-label{font-weight:700;color:#926c1e;min-width:150px;flex-shrink:0;font-size:12px;text-transform:uppercase;letter-spacing:.8px;padding-top:3px}
+.review-ans{flex:1;line-height:1.7;min-width:220px;word-break:break-word;font-size:15px}
+.review-ans.bad{color:var(--bad);font-weight:600}
+.review-ans.good{color:var(--good);font-weight:600}
+.review-ans.correct{color:var(--good);font-weight:700}
+.review-why{margin-top:16px;padding:14px 18px;background:#faf7ef;border-radius:10px;border-left:4px solid var(--gold);font-size:14px;line-height:1.75;color:#5f5a50}
+.text-good{color:var(--good);font-weight:700}
+.text-bad{color:var(--bad);font-weight:700}
+@media(max-width:850px){
+  header{flex-wrap:wrap}
+  #menu{display:block;margin-left:auto}
+  nav{display:none;flex-direction:column;width:100%;order:5}
+  nav.open{display:flex}
+  nav button{text-align:left;font-size:15px;padding:12px 16px}
+  #hero{grid-template-columns:1fr}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .welcome{margin-left:auto;margin-right:0;order:4}
+}
+@media(max-width:560px){
+  body{font-size:15px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stats div:nth-child(2){border-right:0}
+  .stats div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .grid,.vocab,.three,.pairs{grid-template-columns:1fr}
+  footer{grid-template-columns:1fr}
+  .links{grid-column:1}
+  h1{font-size:42px}
+  .head h2{font-size:32px}
+  .card h3,.lesson h3{font-size:21px}
+  .welcome{width:100%;justify-content:center;order:4;margin:10px 0 0 0}
+  .login-box{padding:34px 26px}
+  .login-box h2{font-size:28px}
+  .review-label{min-width:auto}
+}
+</style>
+</head>
+<body>
+
+<div id="loginOverlay" class="login-overlay">
+  <div class="login-box">
+    <img src="logo1.png" onerror="this.style.display='none'" alt="J&amp;S logo">
+    <label class="kicker">HOUSE OF J&amp;S</label>
+    <h2>Student Login</h2>
+    <p>Enter your name and class password to begin Year 7.</p>
+    <form id="loginForm" autocomplete="off">
+      <input type="text" id="studentNameInput" placeholder="Student Name" required maxlength="40">
+      <input type="password" id="studentPassInput" placeholder="Class Password" required>
+      <div id="loginError" class="login-error"></div>
+      <button type="submit" class="gold">Enter Learning Hub →</button>
+    </form>
+    <div class="login-hint">🔑 Class password is provided by your teacher</div>
+  </div>
+</div>
+
+<header>
+  <div class="brand">
+    <img src="logo1.png" onerror="this.style.display='none'" alt="J&amp;S logo">
+    <div>
+      <small>LEARN • CREATE • GROW</small>
+      <b>House of J&amp;S</b>
+      <span>Computer Training Center</span>
+    </div>
+  </div>
+  <div class="welcome" id="welcomeChip" style="display:none">
+    <span class="dot"></span>
+    <span id="welcomeName">Student</span>
+    <button onclick="logout()">Logout</button>
+  </div>
+  <button id="menu">☰</button>
+  <nav>
+    <button data-view="home" class="active">Home</button>
+    <button data-view="study">Study Notes</button>
+    <button data-view="practice">Workbook Practice</button>
+    <button data-view="exam">Unit Exams</button>
+    <button data-view="progress">My Progress</button>
+  </nav>
+</header>
+
+<main>
+  <section id="hero">
+    <div>
+      <label>YEAR 7 • PEARSON iLOWERSECONDARY</label>
+      <h1>Inspire Computing <em>Year 7.</em></h1>
+      <p>Safe practice, responsible use, networks, binary, and programming — the complete Year 7 journey for confident digital citizens.</p>
+      <button class="gold" onclick="go('study')">Explore Study Notes ↗</button>
+      <button onclick="go('exam')">Start an Exam</button>
+      <p class="meta">✦ 6 units　 ◷ 60-minute exams　 ✓ Instant feedback</p>
+    </div>
+    <div class="art">
+      <div class="sun"></div>
+      <div class="artcard">
+        <small>J&amp;S LEARNING HUB</small>
+        <div class="symbol">⌘</div>
+        <h2>Think. Code.<br>Explore.</h2>
+        <hr>
+        <p>Curiosity is your superpower.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div><b>06</b><span>Study units</span></div>
+    <div><b>60</b><span>Question parts</span></div>
+    <div><b>80</b><span>Marks per exam</span></div>
+    <div><b>01:00</b><span>Hour timer</span></div>
+  </section>
+
+  <section id="view"></section>
+</main>
+
+<footer>
+  <div>
+    <b>House of J&amp;S</b>
+    <span>Computer Training Center</span>
+    <p style="margin-top:8px">Learning with confidence, one skill at a time.</p>
+  </div>
+  <div class="links">
+    <a target="_blank" rel="noopener" href="https://www.pearson.com/content/dam/one-dot-com/one-dot-com/international-schools/pdfs/primary-curriculum/iprimary/InspireComputing/InspireComputing-Y7-WB-answers.pdf">Official Pearson Year 7 Workbook Answers ↗</a>
+    <a target="_blank" rel="noopener" href="https://www.scribd.com/document/825114569/Inspire-Computing-Grade-7-Workbook">Year 7 Workbook reference ↗</a>
+  </div>
+  <small>Independent learning companion. Pearson materials remain the property of their copyright holder.</small>
+</footer>
+
+<script>
+const CLASS_PASSWORD = 'HJS2026';
+let studentName = localStorage.getItem('jsStudentName_Y7') || '';
+const loginOverlay = document.getElementById('loginOverlay');
+const loginForm = document.getElementById('loginForm');
+const loginError = document.getElementById('loginError');
+const welcomeChip = document.getElementById('welcomeChip');
+const welcomeName = document.getElementById('welcomeName');
+
+function applyLoginState() {
+  if (studentName) {
+    loginOverlay.classList.add('hidden');
+    welcomeChip.style.display = 'flex';
+    welcomeName.textContent = studentName;
+  } else {
+    loginOverlay.classList.remove('hidden');
+    welcomeChip.style.display = 'none';
+  }
+}
+loginForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const name = document.getElementById('studentNameInput').value.trim();
+  const pass = document.getElementById('studentPassInput').value;
+  loginError.textContent = '';
+  if (!name) { loginError.textContent = 'Please enter your name.'; return; }
+  if (pass !== CLASS_PASSWORD) { loginError.textContent = '❌ Incorrect password. Please check with your teacher.'; return; }
+  studentName = name;
+  localStorage.setItem('jsStudentName_Y7', studentName);
+  document.getElementById('studentPassInput').value = '';
+  applyLoginState();
+  go('home');
+});
+function logout() {
+  if (!confirm('Log out and switch student?')) return;
+  studentName = '';
+  localStorage.removeItem('jsStudentName_Y7');
+  loginOverlay.classList.remove('hidden');
+  welcomeChip.style.display = 'none';
+  document.getElementById('studentNameInput').value = '';
+  document.getElementById('studentPassInput').value = '';
+  loginError.textContent = '';
+}
+
+/* ============================================================
+   YEAR 7 — 6 UNITS
+   Units 1–3 verified from Pearson Y7 Workbook Answers PDF
+   Units 4–6 aligned with official Pearson Year 7 syllabus
+   ============================================================ */
+const embeddedUnits = [
+// ---------- UNIT 1 ----------
+{
+  id:1,title:"Safe Practice: The Internet & WWW",
+  sub:"Presentations, internet research, passwords and evaluating digital work",
+  lessons:[
+    ["The Internet and the WWW","The Internet is a network of computers around the world. The WWW is the shared pages of content we access from our computers or smartphones."],
+    ["Presentation-based projects","When planning a presentation, consider the main tasks, the target audience (age, interests, geography, socio-economic factors) and the form of the task."],
+    ["Creating a storyboard","A storyboard is a visual plan showing a step-by-step sequence, with one box per slide. It helps plan ahead, spot problems and save time."],
+    ["Internet research","A search engine is a website designed to search for other websites using keywords. Advanced search lets you filter by file type, time period, colour, or exclude terms."],
+    ["Building a presentation","A master slide is a common layout applied to one or more slides. A house style uses consistent colour, text and layout choices throughout."],
+    ["Presentation interactivity","You can embed website content (like a video) so it plays directly from the website. Animation and transitions add movement and interest."],
+    ["The importance of passwords","A password is a sequence of letters, numbers and characters that allow access to a system only to the owner. Strong passwords use 8+ characters, mix cases, include special characters, and are not reused."],
+    ["Evaluating a presentation","Evaluation means looking back at a completed project to learn from mistakes. Consider what went well, what didn't, and what can be improved."],
+    ["Adapting for a new audience","A presentation may need adapting if the audience changes, language becomes unsuitable, content is outdated, or feedback suggests changes."]
+  ],
+  vocab:[["Internet","A network of computers around the world."],["WWW","The shared pages of content accessed via the Internet."],["Spoof","A fake website created to spread untrue news or support a product."],["Storyboard","A visual plan showing a step-by-step sequence."],["Search engine","A website designed to search for other websites using keywords."],["Master slide","A common layout applied to one or more slides."],["House style","Consistent colour, text and layout choices."],["Password","A sequence of characters that allows access to a system."],["Biometric","Security using body measurements (fingerprint, face, iris)."],["Evaluation","Looking back at a completed project to learn from mistakes."]],
+  questions:[
+    {type:"mcq",q:"What is the Internet?",opts:["A network of computers around the world","A single website","A type of password"],a:0,why:"Internet: a network of computers around the world."},
+    {type:"mcq",q:"What is the WWW?",opts:["The shared pages of content accessed via the Internet","A type of computer","A password"],a:0,why:"WWW: the shared pages of content we access from our devices."},
+    {type:"mcq",q:"What is a spoof website?",opts:["A fake website created to spread untrue news","A government website","A search engine"],a:0,why:"Spoof: a fake website created to spread untrue news or support a product."},
+    {type:"mcq",q:"What is a storyboard?",opts:["A visual plan showing a step-by-step sequence","A type of computer","A password"],a:0,why:"Storyboard: a visual plan showing a step-by-step sequence."},
+    {type:"mcq",q:"What is a search engine?",opts:["A website designed to search for other websites using keywords","A type of password","A master slide"],a:0,why:"Search engine: a website designed to search for other websites using keywords."},
+    {type:"mcq",q:"What is a master slide?",opts:["A common layout applied to one or more slides","A type of search engine","A password"],a:0,why:"Master slide: a common layout applied to one or more slides."},
+    {type:"mcq",q:"What is a house style?",opts:["Consistent colour, text and layout choices","A type of building","A password"],a:0,why:"House style: consistent colour, text and layout choices throughout."},
+    {type:"mcq",q:"What makes a strong password?",opts:["8+ characters, mixed case, special characters, not reused","Your name","1234"],a:0,why:"Strong passwords use 8+ characters, mixed case, special characters, and are not reused."},
+    {type:"mcq",q:"What is biometric security?",opts:["Security using body measurements","A type of password","A search engine"],a:0,why:"Biometric security uses measurements from the human body, such as fingerprints or face scans."},
+    {type:"mcq",q:"What is evaluation?",opts:["Looking back at a completed project to learn from mistakes","Deleting a project","Starting a new project"],a:0,why:"Evaluation: looking back at a completed project to learn from mistakes."},
+    {type:"mcq",q:"Why might a presentation need adapting?",opts:["The audience has changed","The computer is slow","The password expired"],a:0,why:"Presentations may need adapting if the audience changes, content is outdated, or feedback suggests changes."},
+    {type:"mcq",q:"What is an advantage of a house style?",opts:["Consistency throughout the presentation","More colours","Longer slides"],a:0,why:"A house style ensures consistent colour, text and layout choices."},
+    {type:"mcq",q:"What does a search engine use to find websites?",opts:["Keywords","Passwords","Slide numbers"],a:0,why:"Search engines use keywords to find websites."},
+    {type:"mcq",q:"What is one way to spot a fake website?",opts:["Check if the web address is strange","Check the font size","Check the number of images"],a:0,why:"A strange web address can be a sign of a fake website."},
+    {type:"mcq",q:"What should you do before using a video in a presentation?",opts:["Check the link works","Delete it","Change the password"],a:0,why:"Always check links to videos and websites before using them."},
+    {type:"mcq",q:"What is a transition in a presentation?",opts:["The movement between slides","A type of password","A search engine"],a:0,why:"Transition: the movement between slides."},
+    {type:"mcq",q:"What is an animation in a presentation?",opts:["Movement connected to an object on a slide","A type of password","A search engine"],a:0,why:"Animation: movement connected to an object on the slide."},
+    {type:"mcq",q:"What is one benefit of a storyboard?",opts:["It helps plan ahead and save time","It makes the presentation longer","It adds more animations"],a:0,why:"Storyboards help plan ahead, spot problems and save time."},
+    {type:"mcq",q:"What is spoofing?",opts:["Creating a fake website to spread untrue news","A type of password","A search engine"],a:0,why:"Spoof: a fake website created to spread untrue news stories."},
+    {type:"mcq",q:"What should a strong password not include?",opts:["Personal information like names or birthdays","Special characters","Numbers"],a:0,why:"Avoid personal information such as names, birthdays or pets."},
+    {type:"fill",q:"The __________ is a network of computers around the world.",opts:["Internet","WWW","password"],a:"Internet",why:"Internet: a network of computers around the world."},
+    {type:"fill",q:"The __________ is the shared pages of content accessed via the Internet.",opts:["WWW","Internet","password"],a:"WWW",why:"WWW: the shared pages of content we access from our devices."},
+    {type:"fill",q:"A __________ website is a fake site created to spread untrue news.",opts:["spoof","search","master"],a:"spoof",why:"Spoof: a fake website created to spread untrue news."},
+    {type:"fill",q:"A __________ is a visual plan showing a step-by-step sequence.",opts:["storyboard","password","master slide"],a:"storyboard",why:"Storyboard: a visual plan showing a step-by-step sequence."},
+    {type:"fill",q:"A search __________ is a website designed to search for other websites.",opts:["engine","password","slide"],a:"engine",why:"Search engine: a website designed to search for other websites."},
+    {type:"fill",q:"A __________ slide is a common layout applied to one or more slides.",opts:["master","search","spoof"],a:"master",why:"Master slide: a common layout applied to one or more slides."},
+    {type:"fill",q:"A __________ style uses consistent colour, text and layout choices.",opts:["house","search","spoof"],a:"house",why:"House style: consistent colour, text and layout choices."},
+    {type:"fill",q:"A __________ is a sequence of characters that allows access to a system.",opts:["password","storyboard","search engine"],a:"password",why:"Password: a sequence of characters that allows access to a system."},
+    {type:"fill",q:"__________ security uses body measurements like fingerprints.",opts:["Biometric","Password","Search"],a:"Biometric",why:"Biometric security uses measurements from the human body."},
+    {type:"fill",q:"__________ means looking back at a completed project to learn from mistakes.",opts:["Evaluation","Adaptation","Search"],a:"Evaluation",why:"Evaluation: looking back at a completed project to learn from mistakes."},
+    {type:"tf",q:"The Internet is a network of computers around the world.",a:true,why:"Internet: a network of computers around the world."},
+    {type:"tf",q:"The WWW and the Internet are exactly the same thing.",a:false,why:"The WWW is the shared pages of content; the Internet is the network."},
+    {type:"tf",q:"A spoof website is a genuine, trustworthy site.",a:false,why:"Spoof: a fake website created to spread untrue news."},
+    {type:"tf",q:"A storyboard is a visual plan showing a step-by-step sequence.",a:true,why:"Storyboard: a visual plan showing a step-by-step sequence."},
+    {type:"tf",q:"A search engine uses passwords to find websites.",a:false,why:"Search engines use keywords, not passwords."},
+    {type:"tf",q:"A master slide is a common layout applied to one or more slides.",a:true,why:"Master slide: a common layout applied to one or more slides."},
+    {type:"tf",q:"A house style uses inconsistent colours and layouts.",a:false,why:"House style: consistent colour, text and layout choices."},
+    {type:"tf",q:"Strong passwords should be reused across many sites.",a:false,why:"Don't use the password for more than one system."},
+    {type:"tf",q:"Biometric security uses body measurements.",a:true,why:"Biometric security uses measurements from the human body."},
+    {type:"tf",q:"Evaluation helps you learn from mistakes.",a:true,why:"Evaluation: looking back at a completed project to learn from mistakes."},
+    {type:"match",q:"Match each key term with its correct definition.",pairs:[["Internet","A network of computers around the world."],["WWW","The shared pages of content accessed via the Internet."],["Spoof","A fake website created to spread untrue news."],["Storyboard","A visual plan showing a step-by-step sequence."],["Search engine","A website designed to search for other websites."],["Master slide","A common layout applied to one or more slides."],["House style","Consistent colour, text and layout choices."],["Password","A sequence of characters that allows access to a system."],["Biometric","Security using body measurements."],["Evaluation","Looking back at a project to learn from mistakes."]],why:"Review the vocabulary list in the study notes."},
+    {type:"short",q:"Explain the difference between the Internet and the WWW.",a:"The Internet is the network of computers around the world. The WWW is the shared pages of content we access from our devices.",why:"A good answer distinguishes the network from the content."},
+    {type:"short",q:"What is a spoof website?",a:"A spoof website is a fake site created to spread untrue news stories or support a product with a fun fake version.",why:"A good answer defines a spoof website."},
+    {type:"short",q:"What is a storyboard and why is it useful?",a:"A storyboard is a visual plan showing a step-by-step sequence with one box per slide. It helps plan ahead, spot problems and save time.",why:"A good answer defines and explains storyboarding."},
+    {type:"short",q:"What is a search engine?",a:"A search engine is a website designed to search for other websites using keywords.",why:"A good answer defines a search engine."},
+    {type:"short",q:"What is a master slide?",a:"A master slide is a common layout that can be applied to one or more slides.",why:"A good answer defines a master slide."},
+    {type:"short",q:"What makes a strong password?",a:"Strong passwords use at least 8 characters, mix upper and lowercase letters, include special characters, and are not reused across systems.",why:"A good answer lists the qualities of a strong password."},
+    {type:"short",q:"What is biometric security? Give one example.",a:"Biometric security uses measurements from the human body. Example: fingerprint or face scanning.",why:"A good answer defines biometric security with an example."},
+    {type:"short",q:"What is evaluation?",a:"Evaluation means looking back at a completed project to learn from mistakes and improve future work.",why:"A good answer defines evaluation."},
+    {type:"short",q:"Why might a presentation need adapting?",a:"A presentation may need adapting if the audience has changed, language or images are no longer suitable, content is outdated, or feedback suggests changes.",why:"A good answer lists reasons for adaptation."},
+    {type:"short",q:"What is a house style?",a:"A house style uses consistent colour, text and layout choices throughout a presentation.",why:"A good answer defines house style."}
+  ]
+},
+// ---------- UNIT 2 ----------
+{
+  id:2,title:"Responsible Practice: Legal & Ethical Use",
+  sub:"Copyright, cloud computing, newsletters, document design and distribution",
+  lessons:[
+    ["Copyright","Copyright protects original creative work. Creative Commons allows users to add their own licence defining how work can be used. Royalty-free means no further payments after buying a licence. Copyright-free means not legally owned by anyone."],
+    ["Legal and illegal use of content","Doing something legal means it is OK; doing something illegal breaks the law. Examples of illegal use include watching films via suspicious links or selling images you found online."],
+    ["Working safely in the cloud","Cloud-based computing stores everything online, so programs and documents are available anywhere with an Internet connection. Advantages include collaboration; disadvantages include needing a connection and hacking risks."],
+    ["Researching a newsletter","A newsletter is a published document containing information for a specific audience. Use original text and images where possible, follow copyright laws, and give credit to sources."],
+    ["Planning a group project","Read the project brief carefully, check the deadline, identify group members, break the project into tasks, create a schedule, and assign tasks and deadlines."],
+    ["Document layout","Portrait is vertical; landscape is horizontal. Placeholders are positions for text and images. Margins are the space around the edge. Columns divide the page into vertical text areas. A template is an agreed layout reused for documents."],
+    ["Document page design","A header is at the top of the page; a footer is at the bottom. Page breaks mark the start of a new page. Grouping lets content be moved together."],
+    ["Combining text and graphics","Digital publications are readable on tablets, smartphones and computers; traditional publications are paper only. Text can form a box around a shape, follow its edge, or go in front/behind it. Rotation spins around the centre; opacity allows seeing through an image."],
+    ["Reviewing and proofreading","Proofreading involves checking for spelling, grammar, layout clashes and audience suitability. Tools include spell check, grammar check, thesaurus, word count and readability checks."],
+    ["Distributing digital documents","Digital distribution sends copies to multiple recipients worldwide. Methods include email attachments, website downloads, file transfer sites, instant messaging and social media links. Compression reduces file size; PDF is a Portable Document Format for high-quality publications."]
+  ],
+  vocab:[["Copyright","Legal protection for original creative work."],["Creative Commons","A licence allowing users to define how work can be used."],["Royalty-free","No further payments after buying a licence."],["Copyright-free","Not legally owned by anyone."],["Cloud computing","Storing programs and documents online."],["Newsletter","A published document for a specific audience."],["Portrait","A vertical document orientation."],["Landscape","A horizontal document orientation."],["Placeholder","A position on the page for text or images."],["PDF","Portable Document Format for digital distribution."]],
+  questions:[
+    {type:"mcq",q:"What does copyright protect?",opts:["Original creative work","A type of computer","A password"],a:0,why:"Copyright: legal protection for original creative work."},
+    {type:"mcq",q:"What is Creative Commons?",opts:["A licence allowing users to define how work can be used","A type of search engine","A password"],a:0,why:"Creative Commons: allows users to add their own copyright licence defining how work can be used."},
+    {type:"mcq",q:"What does royalty-free mean?",opts:["No further payments after buying a licence","Free of charge forever","A type of copyright"],a:0,why:"Royalty-free: once a licence has been bought, no further payments are required."},
+    {type:"mcq",q:"What does copyright-free mean?",opts:["Not legally owned by anyone","Protected by copyright","A type of licence"],a:0,why:"Copyright-free: something out of copyright and not legally owned by anyone."},
+    {type:"mcq",q:"What is cloud computing?",opts:["Storing programs and documents online","A type of weather","A password"],a:0,why:"Cloud computing: stores everything online so it is available anywhere with an Internet connection."},
+    {type:"mcq",q:"What is a newsletter?",opts:["A published document containing information for a specific audience","A type of computer","A password"],a:0,why:"Newsletter: a published document containing information for a specific audience."},
+    {type:"mcq",q:"What is portrait orientation?",opts:["Vertical","Horizontal","Diagonal"],a:0,why:"Portrait: vertical document orientation."},
+    {type:"mcq",q:"What is landscape orientation?",opts:["Horizontal","Vertical","Diagonal"],a:0,why:"Landscape: horizontal document orientation."},
+    {type:"mcq",q:"What is a placeholder?",opts:["A position on the page for text or images","A type of password","A search engine"],a:0,why:"Placeholder: positions on the page where text and images will be added."},
+    {type:"mcq",q:"What does PDF stand for?",opts:["Portable Document Format","Personal Data File","Public Document Folder"],a:0,why:"PDF: Portable Document Format."},
+    {type:"mcq",q:"What is compression?",opts:["Reducing the data size of a file","Increasing file size","Deleting a file"],a:0,why:"Compression reduces the data size of a file into a compressed format."},
+    {type:"mcq",q:"What is a template?",opts:["An agreed layout reused to create documents","A type of password","A search engine"],a:0,why:"Template: an agreed layout that can be used over and over again."},
+    {type:"mcq",q:"What is a header?",opts:["Text at the top of the page","Text at the bottom","A type of image"],a:0,why:"Header: found at the top of the page."},
+    {type:"mcq",q:"What is a footer?",opts:["Text at the bottom of the page","Text at the top","A type of image"],a:0,why:"Footer: found at the bottom of the page."},
+    {type:"mcq",q:"What is plagiarism?",opts:["Presenting another person's work as your own","A type of copyright","A search engine"],a:0,why:"Plagiarism: presenting another person's work as your own."},
+    {type:"mcq",q:"What is one advantage of cloud computing?",opts:["People can work together across the world","No Internet needed","No hacking risk"],a:0,why:"Advantage: people can work together across the world."},
+    {type:"mcq",q:"What is one disadvantage of cloud computing?",opts:["You can only access services with an Internet connection","Files are always lost","No collaboration possible"],a:0,why:"Disadvantage: you can only access services when you have an Internet connection."},
+    {type:"mcq",q:"What is proofreading?",opts:["Checking for spelling, grammar and layout errors","Adding more images","Changing the password"],a:0,why:"Proofreading: checking for spelling, grammar, layout clashes and audience suitability."},
+    {type:"mcq",q:"What does a spell check tool do?",opts:["Identifies spelling errors","Adds images","Compresses files"],a:0,why:"Spell check identifies spelling errors."},
+    {type:"mcq",q:"What is digital distribution?",opts:["Sending digital copies to multiple recipients","Printing on paper","Handing out USB drives"],a:0,why:"Digital distribution: sending out digital copies of a document to multiple recipients at the same time."},
+    {type:"fill",q:"__________ protects original creative work.",opts:["Copyright","A password","A search engine"],a:"Copyright",why:"Copyright: legal protection for original creative work."},
+    {type:"fill",q:"__________ Commons allows users to define how their work can be used.",opts:["Creative","Copyright","Royalty"],a:"Creative",why:"Creative Commons: allows users to add their own copyright licence."},
+    {type:"fill",q:"__________-free means no further payments after buying a licence.",opts:["Royalty","Copyright","Creative"],a:"Royalty",why:"Royalty-free: no further payments after buying a licence."},
+    {type:"fill",q:"__________-free means not legally owned by anyone.",opts:["Copyright","Royalty","Creative"],a:"Copyright",why:"Copyright-free: not legally owned by anyone."},
+    {type:"fill",q:"__________ computing stores programs and documents online.",opts:["Cloud","Search","Password"],a:"Cloud",why:"Cloud computing: storing programs and documents online."},
+    {type:"fill",q:"A __________ is a published document for a specific audience.",opts:["newsletter","password","template"],a:"newsletter",why:"Newsletter: a published document for a specific audience."},
+    {type:"fill",q:"__________ is a vertical document orientation.",opts:["Portrait","Landscape","Diagonal"],a:"Portrait",why:"Portrait: vertical document orientation."},
+    {type:"fill",q:"__________ is a horizontal document orientation.",opts:["Landscape","Portrait","Diagonal"],a:"Landscape",why:"Landscape: horizontal document orientation."},
+    {type:"fill",q:"A __________ is a position on the page for text or images.",opts:["placeholder","template","header"],a:"placeholder",why:"Placeholder: positions on the page where text and images will be added."},
+    {type:"fill",q:"__________ stands for Portable Document Format.",opts:["PDF","DOC","TXT"],a:"PDF",why:"PDF: Portable Document Format."},
+    {type:"tf",q:"Copyright protects original creative work.",a:true,why:"Copyright: legal protection for original creative work."},
+    {type:"tf",q:"Creative Commons means work can never be used.",a:false,why:"Creative Commons allows users to define how work can be used."},
+    {type:"tf",q:"Royalty-free means no further payments after buying a licence.",a:true,why:"Royalty-free: no further payments after buying a licence."},
+    {type:"tf",q:"Copyright-free means the work is protected by copyright.",a:false,why:"Copyright-free: not legally owned by anyone."},
+    {type:"tf",q:"Cloud computing stores programs and documents online.",a:true,why:"Cloud computing: stores everything online."},
+    {type:"tf",q:"A newsletter is a published document for a specific audience.",a:true,why:"Newsletter: a published document for a specific audience."},
+    {type:"tf",q:"Portrait orientation is horizontal.",a:false,why:"Portrait: vertical orientation; landscape is horizontal."},
+    {type:"tf",q:"A placeholder is a position on the page for text or images.",a:true,why:"Placeholder: positions on the page where text and images will be added."},
+    {type:"tf",q:"PDF stands for Portable Document Format.",a:true,why:"PDF: Portable Document Format."},
+    {type:"tf",q:"Plagiarism is acceptable in schoolwork.",a:false,why:"Plagiarism is presenting another person's work as your own, which is not acceptable."},
+    {type:"match",q:"Match each key term with its correct definition.",pairs:[["Copyright","Legal protection for original creative work."],["Creative Commons","A licence allowing users to define how work can be used."],["Royalty-free","No further payments after buying a licence."],["Copyright-free","Not legally owned by anyone."],["Cloud computing","Storing programs and documents online."],["Newsletter","A published document for a specific audience."],["Portrait","A vertical document orientation."],["Landscape","A horizontal document orientation."],["Placeholder","A position on the page for text or images."],["PDF","Portable Document Format for digital distribution."]],why:"Review the vocabulary list in the study notes."},
+    {type:"short",q:"What is copyright?",a:"Copyright is legal protection for original creative work, such as text, images, music and video.",why:"A good answer defines copyright."},
+    {type:"short",q:"What is Creative Commons?",a:"Creative Commons is a licence that allows users to add their own copyright licence to their work, defining how it can be used.",why:"A good answer defines Creative Commons."},
+    {type:"short",q:"What is the difference between royalty-free and copyright-free?",a:"Royalty-free means no further payments are required after buying a licence. Copyright-free means the work is out of copyright and not legally owned by anyone.",why:"A good answer contrasts the two terms."},
+    {type:"short",q:"What is cloud computing?",a:"Cloud computing stores programs and documents online, so they are available anywhere with an Internet connection.",why:"A good answer defines cloud computing."},
+    {type:"short",q:"Give one advantage and one disadvantage of cloud computing.",a:"Advantage: people can work together across the world. Disadvantage: you can only access services with an Internet connection.",why:"A good answer gives one advantage and one disadvantage."},
+    {type:"short",q:"What is a newsletter?",a:"A newsletter is a published document containing information for a specific audience.",why:"A good answer defines a newsletter."},
+    {type:"short",q:"What is a template?",a:"A template is an agreed layout that can be used over and over again to create documents.",why:"A good answer defines a template."},
+    {type:"short",q:"What is the difference between a header and a footer?",a:"A header is found at the top of the page; a footer is found at the bottom of the page.",why:"A good answer contrasts header and footer."},
+    {type:"short",q:"What is plagiarism?",a:"Plagiarism is presenting another person's work as your own.",why:"A good answer defines plagiarism."},
+    {type:"short",q:"What is digital distribution?",a:"Digital distribution is the process of sending out digital copies of a document to multiple recipients at the same time to anywhere in the world.",why:"A good answer defines digital distribution."}
+  ]
+},
+// ---------- UNIT 3 ----------
+{
+  id:3,title:"Connectivity & the Internet: Networks",
+  sub:"Wired and wireless networks, mobile access and satellite communication",
+  lessons:[
+    ["Wireless networks","A wired connection is a physical connection using copper wire or fibre optic cable. Wireless systems use electromagnetic radio waves to transmit data between devices. A router connects your home network to the Internet and directs data between the two."],
+    ["Internet Access","A Wi-Fi connection is normally from a home or office and limited in range. A mobile Internet connection connects to mobile towers and allows access almost anywhere. Generations: 2G (slow), 3G (browsing), 4G (streaming), 5G (broadband speed on the move)."],
+    ["Wired connections","Ethernet cables are made from copper wire (twisted-pair) and use standard connectors. Fibre-optic cables transmit data using light pulses and can travel very long distances."],
+    ["Satellite communication","A satellite is a communication device that orbits the Earth, allowing signals to be sent across the planet. Satellites orbit at over 20,000 km and relay signals between locations."]
+  ],
+  vocab:[["Router","A device that connects your home network to the Internet."],["Wired connection","A physical connection using cables."],["Wireless","Using radio waves to transmit data."],["Encryption","Preventing outside users from accessing a network without a password."],["Wi-Fi","A wireless connection normally from a home or office."],["Mobile Internet","A connection using mobile towers, available almost anywhere."],["Ethernet","A copper-wire cable with standard connectors."],["Fibre-optic","A cable that transmits data using light pulses."],["Satellite","A device that orbits the Earth and relays signals."],["Bandwidth","The amount of data that can be transmitted."]],
+  questions:[
+    {type:"mcq",q:"What is a wired connection?",opts:["A physical connection using cables","A wireless connection","A type of password"],a:0,why:"Wired connection: a physical connection between devices using cables."},
+    {type:"mcq",q:"What do wireless systems use to transmit data?",opts:["Electromagnetic radio waves","Copper wires","Light pulses"],a:0,why:"Wireless systems use electromagnetic radio waves."},
+    {type:"mcq",q:"What is a router?",opts:["A device that connects your home network to the Internet","A type of cable","A password"],a:0,why:"Router: a device that connects your home network to the Internet and directs data."},
+    {type:"mcq",q:"What does encryption do?",opts:["Prevents outside users connecting without a password","Increases signal range","Speeds up the connection"],a:0,why:"Encryption prevents outside users connecting to a network and sharing data without a password."},
+    {type:"mcq",q:"What is Wi-Fi?",opts:["A wireless connection normally from a home or office","A wired connection","A type of satellite"],a:0,why:"Wi-Fi: a wireless connection normally from a home or office, limited in range."},
+    {type:"mcq",q:"What is mobile Internet?",opts:["A connection using mobile towers, available almost anywhere","A wired connection","A type of satellite"],a:0,why:"Mobile Internet: connects to mobile towers and allows access almost anywhere."},
+    {type:"mcq",q:"What does 2G allow?",opts:["Very slow speed, mostly text and small images","Streaming video","Broadband speed"],a:0,why:"2G: very slow speed, most text and small images."},
+    {type:"mcq",q:"What does 4G allow?",opts:["Internet streaming and gaming","Only text messages","Only phone calls"],a:0,why:"4G: allows Internet streaming and gaming."},
+    {type:"mcq",q:"What does 5G offer?",opts:["Almost home broadband speed on the move","Very slow speed","Only text messages"],a:0,why:"5G: almost home broadband speed on the move."},
+    {type:"mcq",q:"What is an Ethernet cable made from?",opts:["Copper wire","Fibre optic","Plastic"],a:0,why:"Ethernet: manufactured from copper wire, known as twisted-pair cables."},
+    {type:"mcq",q:"What do fibre-optic cables use to transmit data?",opts:["Light pulses","Radio waves","Copper wire"],a:0,why:"Fibre-optic cables transmit data using light pulses."},
+    {type:"mcq",q:"What is a satellite?",opts:["A communication device that orbits the Earth","A type of router","A password"],a:0,why:"Satellite: a communication device that orbits the Earth, allowing signals to be sent across the planet."},
+    {type:"mcq",q:"How high do satellites orbit?",opts:["Over 20,000 kilometres","Over 2,000 kilometres","Over 200 kilometres"],a:0,why:"Satellites orbit the Earth at a height of over 20,000 kilometres."},
+    {type:"mcq",q:"What is one advantage of wireless networks?",opts:["People can connect from any location within the broadcast area","Signals have unlimited range","No interference"],a:0,why:"Advantage: the lack of wires means people can connect from any location within the broadcast area."},
+    {type:"mcq",q:"What is one disadvantage of wireless networks?",opts:["Signals have a limited range","They need cables","They cannot be encrypted"],a:0,why:"Disadvantage: signals have a limited range and can be affected by thick walls."},
+    {type:"mcq",q:"What is one advantage of Ethernet?",opts:["Fast data connection – 100Gbps","Can travel any distance","No physical breakage"],a:0,why:"Ethernet advantage: fast data connection – 100Gbps."},
+    {type:"mcq",q:"What is one disadvantage of Ethernet?",opts:["Limited to around 100m","Very slow","Cannot be used in homes"],a:0,why:"Ethernet disadvantage: limited to around 100m."},
+    {type:"mcq",q:"What is one advantage of fibre-optic?",opts:["Extremely fast and can travel any distance","Limited to 100m","Cheap and easy"],a:0,why:"Fibre-optic advantage: extremely fast and able to travel any distance."},
+    {type:"mcq",q:"What is one disadvantage of fibre-optic?",opts:["More expensive than Ethernet","Limited to 100m","Very slow"],a:0,why:"Fibre-optic disadvantage: more expensive than Ethernet."},
+    {type:"mcq",q:"What is bandwidth?",opts:["The amount of data that can be transmitted","The length of a cable","The password strength"],a:0,why:"Bandwidth: the amount of data that can be transmitted."},
+    {type:"fill",q:"A __________ connection is a physical connection using cables.",opts:["wired","wireless","satellite"],a:"wired",why:"Wired connection: a physical connection using cables."},
+    {type:"fill",q:"__________ systems use radio waves to transmit data.",opts:["Wireless","Wired","Satellite"],a:"Wireless",why:"Wireless: uses electromagnetic radio waves."},
+    {type:"fill",q:"A __________ connects your home network to the Internet.",opts:["router","password","satellite"],a:"router",why:"Router: connects your home network to the Internet."},
+    {type:"fill",q:"__________ prevents outside users connecting without a password.",opts:["Encryption","A router","Wi-Fi"],a:"Encryption",why:"Encryption prevents outside users connecting without a password."},
+    {type:"fill",q:"__________ is a wireless connection normally from a home or office.",opts:["Wi-Fi","Ethernet","Fibre-optic"],a:"Wi-Fi",why:"Wi-Fi: a wireless connection from a home or office."},
+    {type:"fill",q:"__________ Internet connects to mobile towers.",opts:["Mobile","Wi-Fi","Wired"],a:"Mobile",why:"Mobile Internet: connects to mobile towers."},
+    {type:"fill",q:"__________ cables are made from copper wire.",opts:["Ethernet","Fibre-optic","Satellite"],a:"Ethernet",why:"Ethernet: manufactured from copper wire."},
+    {type:"fill",q:"__________ cables transmit data using light pulses.",opts:["Fibre-optic","Ethernet","Satellite"],a:"Fibre-optic",why:"Fibre-optic: transmits data using light pulses."},
+    {type:"fill",q:"A __________ is a communication device that orbits the Earth.",opts:["satellite","router","password"],a:"satellite",why:"Satellite: a communication device that orbits the Earth."},
+    {type:"fill",q:"__________ is the amount of data that can be transmitted.",opts:["Bandwidth","Encryption","Wi-Fi"],a:"Bandwidth",why:"Bandwidth: the amount of data that can be transmitted."},
+    {type:"tf",q:"A wired connection uses cables.",a:true,why:"Wired connection: a physical connection using cables."},
+    {type:"tf",q:"Wireless systems use copper wires.",a:false,why:"Wireless systems use electromagnetic radio waves."},
+    {type:"tf",q:"A router connects your home network to the Internet.",a:true,why:"Router: connects your home network to the Internet."},
+    {type:"tf",q:"Encryption prevents outside users connecting without a password.",a:true,why:"Encryption prevents outside users connecting without a password."},
+    {type:"tf",q:"Wi-Fi has unlimited range.",a:false,why:"Wi-Fi is normally limited in range."},
+    {type:"tf",q:"Mobile Internet allows access almost anywhere.",a:true,why:"Mobile Internet connects to mobile towers and allows access almost anywhere."},
+    {type:"tf",q:"Ethernet cables are made from fibre-optic strands.",a:false,why:"Ethernet cables are made from copper wire."},
+    {type:"tf",q:"Fibre-optic cables use light pulses.",a:true,why:"Fibre-optic cables transmit data using light pulses."},
+    {type:"tf",q:"Satellites orbit at over 20,000 kilometres.",a:true,why:"Satellites orbit at a height of over 20,000 kilometres."},
+    {type:"tf",q:"Bandwidth is the length of a cable.",a:false,why:"Bandwidth is the amount of data that can be transmitted."},
+    {type:"match",q:"Match each key term with its correct definition.",pairs:[["Router","A device that connects your home network to the Internet."],["Wired connection","A physical connection using cables."],["Wireless","Using radio waves to transmit data."],["Encryption","Preventing outside users accessing a network without a password."],["Wi-Fi","A wireless connection normally from a home or office."],["Mobile Internet","A connection using mobile towers, available almost anywhere."],["Ethernet","A copper-wire cable with standard connectors."],["Fibre-optic","A cable that transmits data using light pulses."],["Satellite","A device that orbits the Earth and relays signals."],["Bandwidth","The amount of data that can be transmitted."]],why:"Review the vocabulary list in the study notes."},
+    {type:"short",q:"What is a wired connection?",a:"A wired connection is a physical connection between devices using cables, such as copper wire or fibre optic.",why:"A good answer defines a wired connection."},
+    {type:"short",q:"What do wireless systems use to transmit data?",a:"Wireless systems use electromagnetic radio waves to transmit data between devices.",why:"A good answer explains wireless transmission."},
+    {type:"short",q:"What is a router?",a:"A router is a device that connects your home network to the Internet and directs data between the two.",why:"A good answer defines a router."},
+    {type:"short",q:"What does encryption do?",a:"Encryption prevents outside users from connecting to a network and sharing data without a password.",why:"A good answer explains encryption."},
+    {type:"short",q:"What is the difference between Wi-Fi and mobile Internet?",a:"Wi-Fi is normally from a home or office and limited in range. Mobile Internet connects to mobile towers and allows access almost anywhere.",why:"A good answer contrasts Wi-Fi and mobile Internet."},
+    {type:"short",q:"What is the difference between Ethernet and fibre-optic cables?",a:"Ethernet uses copper wire and standard connectors, limited to around 100m. Fibre-optic uses light pulses and can travel very long distances, but is more expensive.",why:"A good answer contrasts the two cable types."},
+    {type:"short",q:"What is a satellite?",a:"A satellite is a communication device that orbits the Earth, allowing signals to be sent across the planet.",why:"A good answer defines a satellite."},
+    {type:"short",q:"How do satellites help communication?",a:"Satellites orbit at over 20,000 km and relay signals between locations, allowing data to be sent around the world.",why:"A good answer explains satellite communication."},
+    {type:"short",q:"Give one advantage and one disadvantage of wireless networks.",a:"Advantage: people can connect from any location within the broadcast area. Disadvantage: signals have a limited range.",why:"A good answer gives one advantage and one disadvantage."},
+    {type:"short",q:"What is bandwidth?",a:"Bandwidth is the amount of data that can be transmitted over a connection.",why:"A good answer defines bandwidth."}
+  ]
+},
+// ---------- UNIT 4 ----------
+{
+  id:4,title:"Internet Protocol & Binary",
+  sub:"Bits, bytes, binary numbers, ASCII, IP addresses and data packets",
+  lessons:[
+    ["Bits and bytes","A bit is a single binary digit (0 or 1). A byte is 8 bits. Data of all kinds — text, images, sound and video — is stored as binary."],
+    ["Binary numbers","Binary uses only 0 and 1. Each position represents a power of 2 (1, 2, 4, 8, 16, ...). To convert denary to binary, subtract the largest power of 2 that fits and repeat."],
+    ["Denary to binary conversion","Example: 13 = 8 + 4 + 1 = 1101 in binary. Example: 27 = 16 + 8 + 2 + 1 = 11011."],
+    ["Binary to denary conversion","Add the place values where the bit is 1. Example: 1011 = 8 + 2 + 1 = 11."],
+    ["ASCII and characters","ASCII is a character encoding standard. Each character (letter, digit, punctuation) is represented by a number, which is stored in binary. Example: 'A' = 65."],
+    ["IP addresses","An IP address is a unique number that identifies a device on a network. IPv4 uses 32 bits (e.g. 192.168.1.1); IPv6 uses 128 bits."],
+    ["Data packets","Data is broken into small packets. Each packet carries the destination address, source address, sequence number and data. Packets can travel different routes and are reassembled at the destination."],
+    ["TCP/IP","TCP/IP is the suite of protocols used on the Internet. TCP breaks data into packets and checks they arrive; IP addresses and routes the packets."],
+    ["Routers and routing","Routers direct packets between networks. They read the destination IP address and choose the best path."],
+    ["Why binary matters","Computers use binary because electronic circuits have two stable states: on (1) and off (0). All digital data is ultimately stored and processed as binary."]
+  ],
+  vocab:[["Bit","A single binary digit (0 or 1)."],["Byte","8 bits."],["Binary","A base-2 number system using only 0 and 1."],["Denary","The base-10 number system we use every day."],["ASCII","A character encoding standard."],["IP address","A unique number identifying a device on a network."],["Packet","A small unit of data sent across a network."],["TCP/IP","The suite of protocols used on the Internet."],["Router","A device that directs packets between networks."],["Hexadecimal","A base-16 number system using 0–9 and A–F."]],
+  questions:[
+    {type:"mcq",q:"What is a bit?",opts:["A single binary digit (0 or 1)","A group of 8 bytes","A type of router"],a:0,why:"Bit: a single binary digit, 0 or 1."},
+    {type:"mcq",q:"How many bits are in a byte?",opts:["8","4","16"],a:0,why:"A byte is 8 bits."},
+    {type:"mcq",q:"What number system uses only 0 and 1?",opts:["Binary","Denary","Hexadecimal"],a:0,why:"Binary is base-2, using only 0 and 1."},
+    {type:"mcq",q:"What is denary?",opts:["The base-10 number system","The base-2 number system","A type of protocol"],a:0,why:"Denary is the base-10 system we use every day."},
+    {type:"mcq",q:"What is 13 in binary?",opts:["1101","1011","1110"],a:0,why:"13 = 8 + 4 + 1 = 1101."},
+    {type:"mcq",q:"What is 1011 in denary?",opts:["11","13","9"],a:0,why:"1011 = 8 + 2 + 1 = 11."},
+    {type:"mcq",q:"What does ASCII represent?",opts:["Characters as numbers","Images as pixels","Sound as waves"],a:0,why:"ASCII is a character encoding standard representing characters as numbers."},
+    {type:"mcq",q:"What is an IP address?",opts:["A unique number identifying a device on a network","A type of cable","A password"],a:0,why:"IP address: a unique number identifying a device on a network."},
+    {type:"mcq",q:"Why is data broken into packets?",opts:["To travel efficiently and be reassembled","To make files bigger","To slow down the network"],a:0,why:"Packets can travel efficiently and are reassembled at the destination."},
+    {type:"mcq",q:"What does TCP/IP do?",opts:["Breaks data into packets and routes them","Stores files permanently","Encrypts passwords"],a:0,why:"TCP/IP breaks data into packets, checks delivery, and routes packets."},
+    {type:"mcq",q:"What does a router do?",opts:["Directs packets between networks","Stores web pages","Creates passwords"],a:0,why:"Router: directs packets between networks."},
+    {type:"mcq",q:"Why do computers use binary?",opts:["Circuits have two stable states: on and off","It is faster to type","It uses less electricity"],a:0,why:"Computers use binary because electronic circuits have two stable states."},
+    {type:"mcq",q:"What is hexadecimal?",opts:["A base-16 number system","A base-2 number system","A type of packet"],a:0,why:"Hexadecimal is base-16, using 0–9 and A–F."},
+    {type:"mcq",q:"What is 27 in binary?",opts:["11011","10111","11101"],a:0,why:"27 = 16 + 8 + 2 + 1 = 11011."},
+    {type:"mcq",q:"What is 1111 in denary?",opts:["15","13","17"],a:0,why:"1111 = 8 + 4 + 2 + 1 = 15."},
+    {type:"mcq",q:"What does IPv4 use?",opts:["32 bits","128 bits","8 bits"],a:0,why:"IPv4 uses 32 bits; IPv6 uses 128 bits."},
+    {type:"mcq",q:"What does IPv6 use?",opts:["128 bits","32 bits","64 bits"],a:0,why:"IPv6 uses 128 bits."},
+    {type:"mcq",q:"What is the ASCII code for 'A'?",opts:["65","97","48"],a:0,why:"'A' = 65 in ASCII."},
+    {type:"mcq",q:"What is the main purpose of binary in computing?",opts:["To represent all data as 0s and 1s","To make screens brighter","To speed up typing"],a:0,why:"Binary represents all data as 0s and 1s."},
+    {type:"mcq",q:"What is a packet's destination address used for?",opts:["Routing the packet to the correct device","Encrypting the data","Compressing the data"],a:0,why:"The destination address is used to route the packet."},
+    {type:"fill",q:"A __________ is a single binary digit (0 or 1).",opts:["bit","byte","packet"],a:"bit",why:"Bit: a single binary digit."},
+    {type:"fill",q:"A __________ is 8 bits.",opts:["byte","bit","nibble"],a:"byte",why:"Byte: 8 bits."},
+    {type:"fill",q:"__________ is the base-2 number system using only 0 and 1.",opts:["Binary","Denary","Hexadecimal"],a:"Binary",why:"Binary: base-2 using only 0 and 1."},
+    {type:"fill",q:"__________ is the base-10 number system.",opts:["Denary","Binary","Hexadecimal"],a:"Denary",why:"Denary: base-10."},
+    {type:"fill",q:"__________ is a character encoding standard.",opts:["ASCII","TCP","IP"],a:"ASCII",why:"ASCII: a character encoding standard."},
+    {type:"fill",q:"An __________ address uniquely identifies a device on a network.",opts:["IP","MAC","ASCII"],a:"IP",why:"IP address: unique number identifying a device."},
+    {type:"fill",q:"Data is broken into small __________ when sent.",opts:["packets","bytes","bits"],a:"packets",why:"Packets: small units of data."},
+    {type:"fill",q:"__________ is the suite of protocols used on the Internet.",opts:["TCP/IP","ASCII","HTTP"],a:"TCP/IP",why:"TCP/IP is the suite of protocols used on the Internet."},
+    {type:"fill",q:"A __________ directs packets between networks.",opts:["router","switch","hub"],a:"router",why:"Router: directs packets between networks."},
+    {type:"fill",q:"__________ is a base-16 number system using 0–9 and A–F.",opts:["Hexadecimal","Binary","Denary"],a:"Hexadecimal",why:"Hexadecimal: base-16 using 0–9 and A–F."},
+    {type:"tf",q:"A bit is a single binary digit (0 or 1).",a:true,why:"Bit: a single binary digit."},
+    {type:"tf",q:"A byte is 16 bits.",a:false,why:"A byte is 8 bits."},
+    {type:"tf",q:"Binary uses only 0 and 1.",a:true,why:"Binary is base-2 using only 0 and 1."},
+    {type:"tf",q:"Denary is the base-2 number system.",a:false,why:"Denary is base-10; binary is base-2."},
+    {type:"tf",q:"ASCII represents characters as numbers.",a:true,why:"ASCII is a character encoding standard."},
+    {type:"tf",q:"An IP address is a type of cable.",a:false,why:"IP address: a unique number identifying a device."},
+    {type:"tf",q:"Data packets can travel different routes.",a:true,why:"Packets can travel different routes and are reassembled."},
+    {type:"tf",q:"TCP/IP is used on the Internet.",a:true,why:"TCP/IP is the suite of protocols used on the Internet."},
+    {type:"tf",q:"A router stores web pages permanently.",a:false,why:"Routers direct packets; they do not store web pages."},
+    {type:"tf",q:"Computers use binary because circuits have two stable states.",a:true,why:"Circuits have two stable states: on (1) and off (0)."},
+    {type:"match",q:"Match each key term with its correct definition.",pairs:[["Bit","A single binary digit (0 or 1)."],["Byte","8 bits."],["Binary","A base-2 number system using only 0 and 1."],["Denary","The base-10 number system."],["ASCII","A character encoding standard."],["IP address","A unique number identifying a device on a network."],["Packet","A small unit of data sent across a network."],["TCP/IP","The suite of protocols used on the Internet."],["Router","A device that directs packets between networks."],["Hexadecimal","A base-16 number system using 0–9 and A–F."]],why:"Review the vocabulary list in the study notes."},
+    {type:"short",q:"What is a bit and what is a byte?",a:"A bit is a single binary digit (0 or 1). A byte is 8 bits.",why:"A good answer defines both terms."},
+    {type:"short",q:"Convert 13 to binary. Show your working.",a:"13 = 8 + 4 + 1, so 13 in binary is 1101.",why:"A good answer shows the place values."},
+    {type:"short",q:"Convert 1011 to denary.",a:"1011 = 8 + 2 + 1 = 11.",why:"A good answer adds the place values."},
+    {type:"short",q:"What is ASCII?",a:"ASCII is a character encoding standard. Each character is represented by a number, which is stored in binary.",why:"A good answer defines ASCII."},
+    {type:"short",q:"What is an IP address?",a:"An IP address is a unique number that identifies a device on a network.",why:"A good answer defines an IP address."},
+    {type:"short",q:"Why is data broken into packets?",a:"Small packets can travel efficiently and reassemble at the destination, even taking different routes.",why:"A good answer explains the purpose of packets."},
+    {type:"short",q:"What is TCP/IP?",a:"TCP/IP is the suite of protocols used on the Internet. TCP breaks data into packets and checks delivery; IP addresses and routes the packets.",why:"A good answer explains TCP/IP."},
+    {type:"short",q:"What does a router do?",a:"A router directs data packets between networks, reading the destination IP address and choosing the best path.",why:"A good answer defines a router."},
+    {type:"short",q:"Why do computers use binary?",a:"Electronic circuits have two stable states: on (1) and off (0). Binary matches these states.",why:"A good answer explains why binary is used."},
+    {type:"short",q:"What is hexadecimal and why is it used?",a:"Hexadecimal is a base-16 number system using 0–9 and A–F. It is used as a shorthand for binary because one hex digit represents four bits.",why:"A good answer defines and explains hexadecimal."}
+  ]
+},
+// ---------- UNIT 5 ----------
+{
+  id:5,title:"Programming (A)",
+  sub:"Algorithms, flowcharts, sequence, selection, iteration and trace tables",
+  lessons:[
+    ["Algorithms","An algorithm is a set of ordered steps to solve a problem. Algorithms can be represented as flowcharts or pseudocode."],
+    ["Flowcharts","A flowchart uses standard symbols: oval (start/end), parallelogram (input/output), rectangle (process), diamond (decision), arrow (flow)."],
+    ["Pseudocode","Pseudocode is structured English that looks like code. Example: INPUT number; IF number > 10 THEN OUTPUT 'big'."],
+    ["Sequence","Sequence means instructions are carried out in order, one after another."],
+    ["Selection","Selection chooses between paths using IF, THEN, ELSE, ELSEIF. A condition is tested and the program branches."],
+    ["Iteration","Iteration repeats instructions. A FOR loop repeats a set number of times; a WHILE loop repeats while a condition is true."],
+    ["Variables and constants","A variable stores a value that can change. A constant stores a value that does not change during the program."],
+    ["Input and output","INPUT reads data from the user; OUTPUT displays or returns data."],
+    ["Trace tables","A trace table records the values of variables at each step of an algorithm. It helps check logic and find errors."],
+    ["Debugging algorithms","Debugging means finding and fixing errors in an algorithm. Trace tables, test data and step-by-step checking help."]
+  ],
+  vocab:[["Algorithm","Ordered steps to solve a problem."],["Flowchart","A diagram using standard symbols to represent an algorithm."],["Pseudocode","Structured English resembling code."],["Sequence","Instructions carried out in order."],["Selection","Choosing between paths using IF/ELSE."],["Iteration","Repeating instructions using loops."],["Variable","A named store for a value that can change."],["Constant","A named store for a value that does not change."],["Trace table","A table recording variable values at each step."],["Debugging","Finding and fixing errors."]],
+  questions:[
+    {type:"mcq",q:"What is an algorithm?",opts:["Ordered steps to solve a problem","A type of computer","A password"],a:0,why:"Algorithm: ordered steps to solve a problem."},
+    {type:"mcq",q:"What does a diamond shape represent in a flowchart?",opts:["A decision","A process","Start/end"],a:0,why:"Diamond: decision."},
+    {type:"mcq",q:"What does an oval represent in a flowchart?",opts:["Start or end","Input/output","Process"],a:0,why:"Oval: start or end."},
+    {type:"mcq",q:"What is pseudocode?",opts:["Structured English resembling code","A type of flowchart","A programming language"],a:0,why:"Pseudocode: structured English resembling code."},
+    {type:"mcq",q:"What is sequence?",opts:["Instructions carried out in order","Choosing between paths","Repeating instructions"],a:0,why:"Sequence: instructions carried out in order."},
+    {type:"mcq",q:"What is selection?",opts:["Choosing between paths using IF/ELSE","Repeating instructions","Storing a value"],a:0,why:"Selection: choosing between paths using IF/ELSE."},
+    {type:"mcq",q:"What is iteration?",opts:["Repeating instructions using loops","Choosing between paths","Storing a value"],a:0,why:"Iteration: repeating instructions using loops."},
+    {type:"mcq",q:"What is a variable?",opts:["A named store for a value that can change","A fixed value","A type of loop"],a:0,why:"Variable: a named store for a value that can change."},
+    {type:"mcq",q:"What is a constant?",opts:["A named store for a value that does not change","A value that changes","A type of loop"],a:0,why:"Constant: a value that does not change."},
+    {type:"mcq",q:"What does INPUT do?",opts:["Reads data from the user","Displays data","Repeats instructions"],a:0,why:"INPUT reads data from the user."},
+    {type:"mcq",q:"What does OUTPUT do?",opts:["Displays or returns data","Reads data","Stores a value"],a:0,why:"OUTPUT displays or returns data."},
+    {type:"mcq",q:"What is a trace table?",opts:["A table recording variable values at each step","A type of flowchart","A programming language"],a:0,why:"Trace table: records variable values at each step."},
+    {type:"mcq",q:"What is debugging?",opts:["Finding and fixing errors","Writing new code","Deleting code"],a:0,why:"Debugging: finding and fixing errors."},
+    {type:"mcq",q:"Which loop repeats a set number of times?",opts:["FOR loop","WHILE loop","IF statement"],a:0,why:"FOR loop repeats a set number of times."},
+    {type:"mcq",q:"Which loop repeats while a condition is true?",opts:["WHILE loop","FOR loop","IF statement"],a:0,why:"WHILE loop repeats while a condition is true."},
+    {type:"mcq",q:"What does a parallelogram represent in a flowchart?",opts:["Input/output","Decision","Process"],a:0,why:"Parallelogram: input/output."},
+    {type:"mcq",q:"What does a rectangle represent in a flowchart?",opts:["A process","A decision","Start/end"],a:0,why:"Rectangle: process."},
+    {type:"mcq",q:"What is the purpose of a trace table?",opts:["To check logic and find errors","To draw flowcharts","To write pseudocode"],a:0,why:"Trace tables help check logic and find errors."},
+    {type:"mcq",q:"What is an IF statement used for?",opts:["Selection","Iteration","Sequence"],a:0,why:"IF is used for selection."},
+    {type:"mcq",q:"What is a loop used for?",opts:["Iteration","Selection","Sequence"],a:0,why:"A loop is used for iteration."},
+    {type:"fill",q:"An __________ is a set of ordered steps to solve a problem.",opts:["algorithm","flowchart","variable"],a:"algorithm",why:"Algorithm: ordered steps to solve a problem."},
+    {type:"fill",q:"A __________ uses standard symbols to represent an algorithm.",opts:["flowchart","trace table","constant"],a:"flowchart",why:"Flowchart: a diagram using standard symbols."},
+    {type:"fill",q:"__________ is structured English resembling code.",opts:["Pseudocode","Flowchart","Trace table"],a:"Pseudocode",why:"Pseudocode: structured English resembling code."},
+    {type:"fill",q:"__________ means instructions are carried out in order.",opts:["Sequence","Selection","Iteration"],a:"Sequence",why:"Sequence: instructions carried out in order."},
+    {type:"fill",q:"__________ chooses between paths using IF/ELSE.",opts:["Selection","Iteration","Sequence"],a:"Selection",why:"Selection: choosing between paths."},
+    {type:"fill",q:"__________ repeats instructions using loops.",opts:["Iteration","Selection","Sequence"],a:"Iteration",why:"Iteration: repeating instructions."},
+    {type:"fill",q:"A __________ stores a value that can change.",opts:["variable","constant","loop"],a:"variable",why:"Variable: a value that can change."},
+    {type:"fill",q:"A __________ stores a value that does not change.",opts:["constant","variable","loop"],a:"constant",why:"Constant: a value that does not change."},
+    {type:"fill",q:"A __________ table records variable values at each step.",opts:["trace","flow","constant"],a:"trace",why:"Trace table: records variable values."},
+    {type:"fill",q:"__________ means finding and fixing errors.",opts:["Debugging","Coding","Testing"],a:"Debugging",why:"Debugging: finding and fixing errors."},
+    {type:"tf",q:"An algorithm is a set of ordered steps.",a:true,why:"Algorithm: ordered steps."},
+    {type:"tf",q:"A diamond in a flowchart represents a process.",a:false,why:"Diamond: decision; rectangle: process."},
+    {type:"tf",q:"Pseudocode is structured English resembling code.",a:true,why:"Pseudocode: structured English resembling code."},
+    {type:"tf",q:"Sequence means choosing between paths.",a:false,why:"Sequence means instructions in order; selection chooses between paths."},
+    {type:"tf",q:"Selection uses IF/ELSE.",a:true,why:"Selection: choosing between paths using IF/ELSE."},
+    {type:"tf",q:"Iteration repeats instructions.",a:true,why:"Iteration: repeating instructions using loops."},
+    {type:"tf",q:"A variable stores a value that never changes.",a:false,why:"A variable can change; a constant does not change."},
+    {type:"tf",q:"A constant stores a value that does not change.",a:true,why:"Constant: a value that does not change."},
+    {type:"tf",q:"INPUT reads data from the user.",a:true,why:"INPUT reads data from the user."},
+    {type:"tf",q:"A trace table helps find errors.",a:true,why:"Trace tables help check logic and find errors."},
+    {type:"match",q:"Match each key term with its correct definition.",pairs:[["Algorithm","Ordered steps to solve a problem."],["Flowchart","A diagram using standard symbols to represent an algorithm."],["Pseudocode","Structured English resembling code."],["Sequence","Instructions carried out in order."],["Selection","Choosing between paths using IF/ELSE."],["Iteration","Repeating instructions using loops."],["Variable","A named store for a value that can change."],["Constant","A named store for a value that does not change."],["Trace table","A table recording variable values at each step."],["Debugging","Finding and fixing errors."]],why:"Review the vocabulary list in the study notes."},
+    {type:"short",q:"What is an algorithm?",a:"An algorithm is a set of ordered steps to solve a problem.",why:"A good answer defines an algorithm."},
+    {type:"short",q:"What is a flowchart and what shapes does it use?",a:"A flowchart is a diagram representing an algorithm using standard symbols: oval for start/end, parallelogram for input/output, rectangle for process, diamond for decision.",why:"A good answer describes flowcharts and their symbols."},
+    {type:"short",q:"What is pseudocode?",a:"Pseudocode is structured English that resembles code, used to plan algorithms.",why:"A good answer defines pseudocode."},
+    {type:"short",q:"What is sequence?",a:"Sequence means instructions are carried out in order, one after another.",why:"A good answer defines sequence."},
+    {type:"short",q:"What is selection? Give one example.",a:"Selection chooses between paths using IF/ELSE. Example: IF score > 50 THEN output 'pass' ELSE output 'fail'.",why:"A good answer defines selection with an example."},
+    {type:"short",q:"What is iteration? Give one example.",a:"Iteration repeats instructions using loops. Example: FOR i = 1 TO 10 output i.",why:"A good answer defines iteration with an example."},
+    {type:"short",q:"What is the difference between a variable and a constant?",a:"A variable stores a value that can change; a constant stores a value that does not change.",why:"A good answer contrasts variable and constant."},
+    {type:"short",q:"What is a trace table?",a:"A trace table records the values of variables at each step of an algorithm, helping to check logic and find errors.",why:"A good answer defines a trace table."},
+    {type:"short",q:"What is debugging?",a:"Debugging means finding and fixing errors in an algorithm or program.",why:"A good answer defines debugging."},
+    {type:"short",q:"What is the difference between a FOR loop and a WHILE loop?",a:"A FOR loop repeats a set number of times; a WHILE loop repeats while a condition is true.",why:"A good answer contrasts FOR and WHILE loops."}
+  ]
+},
+// ---------- UNIT 6 ----------
+{
+  id:6,title:"Programming (B)",
+  sub:"Functions, arrays, string handling, testing and computational thinking",
+  lessons:[
+    ["Functions and procedures","A function returns a value; a procedure performs an action. Both group instructions under a name and reduce repetition."],
+    ["Parameters and arguments","A parameter is a variable in a function definition. An argument is the value passed when the function is called."],
+    ["Arrays and lists","An array or list stores multiple values under one name. Items are accessed by index (position). Example: scores[0]."],
+    ["String handling","Strings are sequences of characters. Common operations include length, substring, concatenation, uppercase, lowercase and searching."],
+    ["File handling","File handling reads from and writes to files. Operations include open, read, write, append and close."],
+    ["Testing and test data","Testing checks that a program works. Test data includes normal, boundary and erroneous data."],
+    ["Debugging strategies","Debugging strategies include tracing, adding print statements, using breakpoints, and checking one section at a time."],
+    ["Decomposition","Decomposition breaks a complex problem into smaller, manageable sub-problems."],
+    ["Abstraction","Abstraction removes unnecessary detail and focuses on the important features."],
+    ["Pattern recognition","Pattern recognition identifies similarities and repeating structures to solve problems more efficiently."]
+  ],
+  vocab:[["Function","A named block of code that returns a value."],["Procedure","A named block of code that performs an action."],["Parameter","A variable in a function definition."],["Argument","A value passed to a function when called."],["Array","A data structure storing multiple values under one name."],["Index","The position of an item in an array."],["String","A sequence of characters."],["File handling","Reading from and writing to files."],["Test data","Data used to check a program works."],["Decomposition","Breaking a problem into smaller parts."]],
+  questions:[
+    {type:"mcq",q:"What is a function?",opts:["A named block of code that returns a value","A type of loop","A variable"],a:0,why:"Function: a named block of code that returns a value."},
+    {type:"mcq",q:"What is a procedure?",opts:["A named block of code that performs an action","A named block of code that returns a value","A type of array"],a:0,why:"Procedure: a named block of code that performs an action."},
+    {type:"mcq",q:"What is a parameter?",opts:["A variable in a function definition","A value passed to a function","A type of loop"],a:0,why:"Parameter: a variable in a function definition."},
+    {type:"mcq",q:"What is an argument?",opts:["A value passed to a function when called","A variable in a definition","A type of array"],a:0,why:"Argument: a value passed to a function when called."},
+    {type:"mcq",q:"What is an array?",opts:["A data structure storing multiple values under one name","A type of loop","A function"],a:0,why:"Array: stores multiple values under one name."},
+    {type:"mcq",q:"What is an index?",opts:["The position of an item in an array","A type of loop","A function"],a:0,why:"Index: the position of an item in an array."},
+    {type:"mcq",q:"What is a string?",opts:["A sequence of characters","A type of number","A type of array"],a:0,why:"String: a sequence of characters."},
+    {type:"mcq",q:"What does file handling do?",opts:["Reads from and writes to files","Sorts arrays","Draws flowcharts"],a:0,why:"File handling: reading from and writing to files."},
+    {type:"mcq",q:"What is test data?",opts:["Data used to check a program works","Data stored in files","Data in arrays"],a:0,why:"Test data: data used to check a program works."},
+    {type:"mcq",q:"What is decomposition?",opts:["Breaking a problem into smaller parts","Combining programs","Deleting code"],a:0,why:"Decomposition: breaking a problem into smaller parts."},
+    {type:"mcq",q:"What is abstraction?",opts:["Removing unnecessary detail","Adding more detail","Deleting code"],a:0,why:"Abstraction: removing unnecessary detail."},
+    {type:"mcq",q:"What is pattern recognition?",opts:["Identifying similarities and repeating structures","Writing code","Testing programs"],a:0,why:"Pattern recognition: identifying similarities and repeating structures."},
+    {type:"mcq",q:"What is debugging?",opts:["Finding and fixing errors","Writing code","Testing data"],a:0,why:"Debugging: finding and fixing errors."},
+    {type:"mcq",q:"What is a normal test data item?",opts:["Data that should work correctly","Data that should fail","Data at the boundary"],a:0,why:"Normal test data should work correctly."},
+    {type:"mcq",q:"What is boundary test data?",opts:["Data at the edge of valid range","Data in the middle","Data that is invalid"],a:0,why:"Boundary test data is at the edge of the valid range."},
+    {type:"mcq",q:"What is erroneous test data?",opts:["Data that should be rejected","Data that should work","Data at the boundary"],a:0,why:"Erroneous test data should be rejected."},
+    {type:"mcq",q:"What does a function return?",opts:["A value","Nothing","A loop"],a:0,why:"A function returns a value."},
+    {type:"mcq",q:"What does a procedure return?",opts:["Nothing","A value","An array"],a:0,why:"A procedure performs an action and does not return a value."},
+    {type:"mcq",q:"What does string handling include?",opts:["Length, substring, concatenation","Sorting arrays","Drawing flowcharts"],a:0,why:"String handling includes length, substring, concatenation, etc."},
+    {type:"mcq",q:"Why is testing important?",opts:["To check the program works correctly","To make it longer","To add colours"],a:0,why:"Testing checks that a program works correctly."},
+    {type:"fill",q:"A __________ is a named block of code that returns a value.",opts:["function","procedure","loop"],a:"function",why:"Function: returns a value."},
+    {type:"fill",q:"A __________ is a named block of code that performs an action.",opts:["procedure","function","loop"],a:"procedure",why:"Procedure: performs an action."},
+    {type:"fill",q:"A __________ is a variable in a function definition.",opts:["parameter","argument","index"],a:"parameter",why:"Parameter: a variable in a function definition."},
+    {type:"fill",q:"An __________ is a value passed to a function when called.",opts:["argument","parameter","index"],a:"argument",why:"Argument: a value passed to a function."},
+    {type:"fill",q:"An __________ stores multiple values under one name.",opts:["array","string","function"],a:"array",why:"Array: stores multiple values."},
+    {type:"fill",q:"An __________ is the position of an item in an array.",opts:["index","argument","parameter"],a:"index",why:"Index: the position of an item."},
+    {type:"fill",q:"A __________ is a sequence of characters.",opts:["string","array","function"],a:"string",why:"String: a sequence of characters."},
+    {type:"fill",q:"__________ handling reads from and writes to files.",opts:["File","String","Array"],a:"File",why:"File handling: reading from and writing to files."},
+    {type:"fill",q:"__________ data is used to check a program works.",opts:["Test","Normal","Boundary"],a:"Test",why:"Test data: used to check a program works."},
+    {type:"fill",q:"__________ breaks a problem into smaller parts.",opts:["Decomposition","Abstraction","Pattern recognition"],a:"Decomposition",why:"Decomposition: breaking a problem into smaller parts."},
+    {type:"tf",q:"A function returns a value.",a:true,why:"Function: returns a value."},
+    {type:"tf",q:"A procedure returns a value.",a:false,why:"Procedure: performs an action; does not return a value."},
+    {type:"tf",q:"A parameter is a value passed to a function.",a:false,why:"A parameter is a variable in a definition; an argument is a value passed."},
+    {type:"tf",q:"An argument is a value passed to a function when called.",a:true,why:"Argument: a value passed to a function."},
+    {type:"tf",q:"An array stores multiple values under one name.",a:true,why:"Array: stores multiple values."},
+    {type:"tf",q:"An index is the position of an item in an array.",a:true,why:"Index: the position of an item."},
+    {type:"tf",q:"A string is a sequence of characters.",a:true,why:"String: a sequence of characters."},
+    {type:"tf",q:"File handling reads from and writes to files.",a:true,why:"File handling: reading from and writing to files."},
+    {type:"tf",q:"Test data is used to check a program works.",a:true,why:"Test data: used to check a program works."},
+    {type:"tf",q:"Decomposition combines programs into one.",a:false,why:"Decomposition breaks a problem into smaller parts."},
+    {type:"match",q:"Match each key term with its correct definition.",pairs:[["Function","A named block of code that returns a value."],["Procedure","A named block of code that performs an action."],["Parameter","A variable in a function definition."],["Argument","A value passed to a function when called."],["Array","A data structure storing multiple values under one name."],["Index","The position of an item in an array."],["String","A sequence of characters."],["File handling","Reading from and writing to files."],["Test data","Data used to check a program works."],["Decomposition","Breaking a problem into smaller parts."]],why:"Review the vocabulary list in the study notes."},
+    {type:"short",q:"What is the difference between a function and a procedure?",a:"A function returns a value; a procedure performs an action and does not return a value.",why:"A good answer contrasts function and procedure."},
+    {type:"short",q:"What is the difference between a parameter and an argument?",a:"A parameter is a variable in a function definition; an argument is the value passed when the function is called.",why:"A good answer contrasts parameter and argument."},
+    {type:"short",q:"What is an array? Give one example.",a:"An array stores multiple values under one name. Example: scores = [10, 20, 30].",why:"A good answer defines an array with an example."},
+    {type:"short",q:"What is an index?",a:"An index is the position of an item in an array, used to access that item.",why:"A good answer defines an index."},
+    {type:"short",q:"What is a string? Give one example of string handling.",a:"A string is a sequence of characters. Example: finding the length of a string.",why:"A good answer defines a string with an example."},
+    {type:"short",q:"What is file handling?",a:"File handling reads from and writes to files, allowing data to be saved and loaded.",why:"A good answer defines file handling."},
+    {type:"short",q:"What is test data? Name three types.",a:"Test data is used to check a program works. Types: normal, boundary and erroneous.",why:"A good answer defines test data and names three types."},
+    {type:"short",q:"What is decomposition?",a:"Decomposition breaks a complex problem into smaller, manageable sub-problems.",why:"A good answer defines decomposition."},
+    {type:"short",q:"What is abstraction?",a:"Abstraction removes unnecessary detail and focuses on the important features.",why:"A good answer defines abstraction."},
+    {type:"short",q:"What is pattern recognition?",a:"Pattern recognition identifies similarities and repeating structures to solve problems more efficiently.",why:"A good answer defines pattern recognition."}
+  ]
+}
+];
+
+let units = embeddedUnits, active = 1, view = 'home', filter = 'all', exam = null, timer = null;
+let progress = JSON.parse(localStorage.getItem('jsProgress_Y7') || '{}');
+const $ = s => document.querySelector(s);
+
+applyLoginState();
+render();
+
+function go(v) {
+  if (!studentName) { loginOverlay.classList.remove('hidden'); return; }
+  view = v;
+  document.querySelectorAll('nav button').forEach(b => b.classList.toggle('active', b.dataset.view === v));
+  $('#hero').classList.toggle('hidden', v !== 'home');
+  $('.stats').classList.toggle('hidden', v !== 'home');
+  render();
+  scrollTo({top:0,behavior:'smooth'});
+  $('nav').classList.remove('open');
+}
+document.querySelectorAll('nav button').forEach(b => b.onclick = () => go(b.dataset.view));
+$('#menu').onclick = () => $('nav').classList.toggle('open');
+
+function tabs() {
+  return '<div class="tabs">' + units.map(u =>
+    `<button class="${u.id===active?'active':''}" onclick="active=${u.id};render()">${u.id}. ${u.title}</button>`
+  ).join('') + '</div>';
+}
+
+function render() {
+  if (!units.length || !studentName) return;
+  const u = units[active-1], v = $('#view');
+
+  if (view === 'home') {
+    v.innerHTML = `
+      <div class="head">
+        <label>YOUR LEARNING PATH</label>
+        <h2>Welcome back, ${escapeHtml(studentName)} 👋</h2>
+        <p class="muted">Choose a unit to study, practise, or take a timed assessment.</p>
+      </div>
+      <div class="grid">${units.map(x => `
+        <article class="card">
+          <div class="num">UNIT ${x.id}</div>
+          <h3>${x.title}</h3>
+          <p>${x.sub}</p>
+          <div>
+            <button onclick="active=${x.id};go('study')">Study notes ↗</button>
+            <button onclick="active=${x.id};go('exam')">Take exam →</button>
+          </div>
+        </article>`).join('')}
+      </div>
+      <div class="panel">
+        <label>EXAM STRUCTURE</label>
+        <h2>80 marks • 60 minutes</h2>
+        <p class="muted">20 multiple choice (20 marks) + 10 fill blanks (10) + 10 true/false (10) + 1 matching task worth 10 marks (10 pairs) + 10 short answers (30 marks; 3 each).</p>
+      </div>`;
+  }
+  else if (view === 'study') {
+    v.innerHTML = `
+      <div class="head">
+        <label>STUDY LIBRARY</label>
+        <h2>Study Notes</h2>
+        <p>Clear explanations and key vocabulary.</p>
+      </div>
+      ${tabs()}
+      <div class="panel">
+        <label>UNIT ${u.id}</label>
+        <h2>${u.title}</h2>
+        <p class="muted">${u.sub}</p>
+        ${u.lessons.map((l,i) => `
+          <article class="lesson">
+            <label>LESSON ${i+1}</label>
+            <h3>${l[0]}</h3>
+            <p>${l[1]}</p>
+          </article>`).join('')}
+      </div>
+      <div class="panel">
+        <label>KEY VOCABULARY</label>
+        <div class="vocab">${u.vocab.map(x => `<div class="word"><b>${x[0]}</b>${x[1]}</div>`).join('')}</div>
+      </div>
+      <div class="callout">Study tip: explain each key idea in your own words, then practise without looking at the notes.</div>
+      <button class="gold" onclick="go('practice')">Practise this unit →</button>
+      <button onclick="go('exam')">Start exam</button>`;
+  }
+  else if (view === 'practice') {
+    const qs = u.questions.filter(q => filter === 'all' || q.type === filter);
+    v.innerHTML = `
+      <div class="head">
+        <label>PRACTICE STUDIO</label>
+        <h2>Workbook-style Practice</h2>
+        <p>Original questions aligned with unit themes. Check answers to see explanations.</p>
+      </div>
+      ${tabs()}
+      <div class="tabs">
+        ${[['all','All types'],['mcq','Multiple choice'],['fill','Fill blanks'],['tf','True / false'],['match','Matching'],['short','Short answer']].map(a =>
+          `<button class="${filter===a[0]?'active':''}" onclick="filter='${a[0]}';render()">${a[1]}</button>`
+        ).join('')}
+      </div>
+      <div class="callout">These are newly written practice questions, not a verbatim reproduction of Pearson workbook pages.</div>
+      <form id="pf">
+        ${qs.map((q,i) => qhtml(q,i,'p')).join('')}
+        <button class="gold">Check answers</button>
+      </form>
+      <div id="pr"></div>`;
+    $('#pf').onsubmit = e => {
+      e.preventDefault();
+      let c = 0;
+      qs.forEach((q,i) => {
+        const a = getanswer(q,i,'p'), ok = check(q,a);
+        if(ok) c++;
+        const el = $('#fbp'+i);
+        el.className = 'feedback ' + (ok?'good':'bad');
+        el.innerHTML = `<b>${ok?'Correct':'Review this answer'}.</b> ${answertext(q)} ${q.why}`;
+      });
+      $('#pr').innerHTML = `<div class="panel"><h2>${c}/${qs.length} correct</h2><div class="bar"><span style="width:${Math.round(c/qs.length*100)}%"></span></div><p class="muted">Review the feedback and try again.</p></div>`;
+    };
+  }
+  else if (view === 'exam') {
+    if (exam && !exam.done && exam.uid === active) { renderExam(); return; }
+    v.innerHTML = `
+      <div class="head">
+        <label>TIMED ASSESSMENT</label>
+        <h2>Unit Examination</h2>
+        <p>60-minute assessment with instant feedback.</p>
+      </div>
+      ${tabs()}
+      <div class="panel">
+        <h2>${u.title}</h2>
+        <div class="three">
+          <div><b>51</b><span>Tasks / 60 question parts</span></div>
+          <div><b>80</b><span>Total marks</span></div>
+          <div><b>60 min</b><span>Time allowed</span></div>
+        </div>
+        <p class="muted">20 MCQ + 10 fill blanks + 10 true/false + one matching task worth 10 marks (10 pairs) + 10 short answers = 60 question parts and 80 marks. Matching gives 10 marks when all ten pairs are correct.</p>
+        <button class="gold" onclick="startExam()">Begin exam →</button>
+      </div>`;
+  }
+  else if (view === 'progress') {
+    const done = units.filter(x => progress[x.id]);
+    v.innerHTML = `
+      <div class="head">
+        <label>LEARNING DASHBOARD</label>
+        <h2>${escapeHtml(studentName)}'s Progress</h2>
+        <p>Scores are saved only in this browser.</p>
+      </div>
+      <div class="three">
+        <div><b>${done.length}/6</b><span>Units attempted</span></div>
+        <div><b>${done.length?Math.round(done.reduce((s,x)=>s+progress[x.id].pct,0)/done.length):0}%</b><span>Average score</span></div>
+        <div><b>${done.filter(x=>progress[x.id].pct>=80).length}</b><span>Units at 80%+</span></div>
+      </div>
+      <div class="grid">${units.map(x => `
+        <article class="card">
+          <h3>${x.title}</h3>
+          <p>${progress[x.id]?`Last score: ${progress[x.id].pct}% (${progress[x.id].marks}/80)`:'Not attempted yet.'}</p>
+          <button onclick="active=${x.id};go('exam')">${progress[x.id]?'Retake':'Start'} exam →</button>
+        </article>`).join('')}
+      </div>
+      <button onclick="if(confirm('Clear saved scores?')){progress={};localStorage.removeItem('jsProgress_Y7');render()}">Reset saved progress</button>
+      <p class="muted">This front-end demo does not send scores to a teacher or server.</p>`;
+  }
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function qhtml(q,i,p) {
+  let h = '';
+  if (q.type === 'mcq') {
+    h = '<div class="options">' + q.opts.map((o,j) =>
+      `<label class="opt"><input type="radio" name="${p}${i}" value="${j}"> <span>${String.fromCharCode(65+j)}. ${o}</span></label>`
+    ).join('') + '</div>';
+  }
+  if (q.type === 'fill') {
+    h = `<p class="muted">Word bank: ${q.opts.join(' · ')}</p><input type="text" name="${p}${i}" placeholder="Type your answer">`;
+  }
+  if (q.type === 'tf') {
+    h = `<div class="options">
+      <label class="opt"><input type="radio" name="${p}${i}" value="true"> <span>True</span></label>
+      <label class="opt"><input type="radio" name="${p}${i}" value="false"> <span>False</span></label>
+    </div>`;
+  }
+  if (q.type === 'match') {
+    h = '<div class="pairs">' + q.pairs.map((x,j) =>
+      `<div class="word"><b>${j+1}. ${x[0]}</b>
+        <select name="${p}${i}_${j}">
+          <option value="">Choose definition…</option>
+          ${q.pairs.map((y,k) => `<option value="${k}">${y[1]}</option>`).join('')}
+        </select>
+      </div>`
+    ).join('') + '</div>';
+  }
+  if (q.type === 'short') {
+    h = `<textarea name="${p}${i}" rows="4" placeholder="Answer in your own words"></textarea>`;
+  }
+  const marks = q.type === 'short' ? '3 marks' : q.type === 'match' ? '10 marks' : '1 mark';
+  return `<article class="q">
+    <div class="qtop">QUESTION ${i+1} · ${q.type.toUpperCase()} · ${marks}</div>
+    <h3>${q.q}</h3>
+    ${h}
+    <div id="fb${p}${i}"></div>
+  </article>`;
+}
+
+function getanswer(q,i,p) {
+  if (q.type === 'match') return q.pairs.map((_,j) => $(`[name="${p}${i}_${j}"]`).value);
+  if (q.type === 'short' || q.type === 'fill') return $(`[name="${p}${i}"]`)?.value || '';
+  return $(`[name="${p}${i}"]:checked`)?.value;
+}
+
+function norm(s) {
+  return String(s ?? '').toLowerCase().trim().replace(/[.,!?;:'“”]/g,'').replace(/\s+/g,' ');
+}
+
+function check(q,a) {
+  if (q.type === 'mcq') return a !== undefined && Number(a) === q.a;
+  if (q.type === 'tf') return a !== undefined && (a === 'true') === q.a;
+  if (q.type === 'fill') return norm(a) === norm(q.a);
+  if (q.type === 'match') return Array.isArray(a) && a.every((x,i) => x !== '' && Number(x) === i);
+  const words = norm(q.a).split(' ').filter(w => w.length > 4);
+  return norm(a).length > 20 && words.filter(w => norm(a).includes(w)).length >= 1;
+}
+
+function answertext(q) {
+  if (q.type === 'mcq') return `Correct answer: ${q.opts[q.a]}.`;
+  if (q.type === 'tf') return `Correct answer: ${q.a?'True':'False'}.`;
+  if (q.type === 'fill') return `Suggested answer: ${q.a}.`;
+  if (q.type === 'match') return 'All ten pairs must be correct for full marks.';
+  return `Model answer: ${q.a}`;
+}
+
+function correctAnswerText(q) {
+  if (q.type === 'mcq') return `${String.fromCharCode(65 + q.a)}. ${q.opts[q.a]}`;
+  if (q.type === 'tf') return q.a ? 'True' : 'False';
+  if (q.type === 'fill') return q.a;
+  if (q.type === 'match') return q.pairs.map((p, j) => `${j+1}. ${p[0]} → ${p[1]}`).join('<br>');
+  if (q.type === 'short') return q.a;
+  return '';
+}
+
+function studentAnswerText(q, a) {
+  if (q.type === 'mcq') {
+    if (a === undefined || a === '' || a === null) return '<em>(No answer)</em>';
+    const idx = Number(a);
+    return `${String.fromCharCode(65 + idx)}. ${q.opts[idx]}`;
+  }
+  if (q.type === 'tf') {
+    if (a === undefined || a === '') return '<em>(No answer)</em>';
+    return a === 'true' ? 'True' : 'False';
+  }
+  if (q.type === 'fill') return (a || '').trim() ? escapeHtml(a) : '<em>(No answer)</em>';
+  if (q.type === 'match') {
+    if (!Array.isArray(a)) return '<em>(No answer)</em>';
+    return q.pairs.map((p, j) => {
+      const sel = a[j];
+      const def = (sel !== '' && sel !== undefined && sel !== null) ? q.pairs[Number(sel)]?.[1] : '<em>(not selected)</em>';
+      const correctDef = q.pairs[j][1];
+      const ok = sel !== '' && Number(sel) === j;
+      return `<span style="color:${ok ? 'var(--good)' : 'var(--bad)'}">${j+1}. ${p[0]} → ${def}${!ok ? ` <span style="color:#a03c34;font-size:13px">(should be: ${correctDef})</span>` : ''}</span>`;
+    }).join('<br>');
+  }
+  if (q.type === 'short') return (a || '').trim() ? escapeHtml(a) : '<em>(No answer)</em>';
+  return '<em>(No answer)</em>';
+}
+
+function startExam() {
+  exam = {uid:active, qs:units[active-1].questions, idx:0, answers:{}, left:3600, done:false};
+  if (timer) clearInterval(timer);
+  timer = setInterval(() => {
+    if (!exam || exam.done) return;
+    exam.left--;
+    const t = $('#timer');
+    if (t) t.textContent = fmt(exam.left);
+    if (exam.left <= 0) finishExam(true);
+  }, 1000);
+  renderExam();
+}
+
+function fmt(n) {
+  return `${String(Math.floor(Math.max(0,n)/60)).padStart(2,'0')}:${String(Math.max(0,n)%60).padStart(2,'0')}`;
+}
+
+function save() {
+  const e = exam, q = e.qs[e.idx];
+  e.answers[e.idx] = getanswer(q, e.idx, 'e');
+}
+
+function renderExam() {
+  const e = exam, q = e.qs[e.idx];
+  $('#view').innerHTML = `
+    <div class="panel">
+      <div style="display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap">
+        <div>
+          <label>UNIT ${e.uid} EXAM · ${escapeHtml(studentName)}</label>
+          <h2>${units[e.uid-1].title}</h2>
+          <p class="muted">Task ${e.idx+1} of ${e.qs.length}</p>
+        </div>
+        <div class="timer" id="timer">${fmt(e.left)}</div>
+      </div>
+      <div class="bar"><span style="width:${(e.idx+1)/e.qs.length*100}%"></span></div>
+      <form id="ef">${qhtml(q, e.idx, 'e')}</form>
+      <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center">
+        <button ${e.idx===0?'disabled':''} onclick="save();exam.idx--;renderExam()">← Previous</button>
+        <span class="muted">${Object.keys(e.answers).length} answered</span>
+        ${e.idx < e.qs.length-1
+          ? '<button class="gold" onclick="save();exam.idx++;renderExam()">Next →</button>'
+          : '<button class="gold" onclick="save();if(confirm(\'Submit exam?\'))finishExam(false)">Submit exam</button>'}
+      </div>
+      <p class="muted" style="margin-top:14px">Keep this page open until you submit.</p>
+    </div>`;
+  const a = e.answers[e.idx];
+  if (a !== undefined) {
+    if (q.type === 'match') a.forEach((x,j) => { const el = $(`[name="e${e.idx}_${j}"]`); if(el) el.value = x; });
+    else if (q.type === 'fill' || q.type === 'short') { const el = $(`[name="e${e.idx}"]`); if(el) el.value = a; }
+    else {
+      const el = $(`[name="e${e.idx}"][value="${a}"]`);
+      if (el) el.checked = true;
+    }
+  }
+}
+
+function finishExam(auto) {
+  if (!exam || exam.done) return;
+  if (timer) clearInterval(timer);
+  exam.done = true;
+  const e = exam;
+  let marks = 0, rows = [];
+  e.qs.forEach((q,i) => {
+    const a = e.answers[i];
+    let m = 0, ok = false, max = 1;
+    if (q.type === 'mcq' || q.type === 'fill' || q.type === 'tf') { ok = check(q,a); m = ok?1:0; max = 1; }
+    else if (q.type === 'match') { ok = check(q,a||[]); m = ok?10:0; max = 10; }
+    else { ok = check(q,a); m = ok?3:0; max = 3; }
+    marks += m;
+    rows.push({q, a, m, ok, max});
+  });
+  const pct = Math.round(marks/80*100);
+  progress[e.uid] = {marks,pct};
+  localStorage.setItem('jsProgress_Y7', JSON.stringify(progress));
+  $('#view').innerHTML = `
+    <div class="panel">
+      <label>EXAM COMPLETE ${auto?'• TIME EXPIRED':''}</label>
+      <h2>${escapeHtml(studentName)}'s Results</h2>
+      <div class="result">${marks} <span style="font-size:24px;color:#777">/ 80</span></div>
+      <p class="muted">${pct}% provisional score. Short-answer marking is a simple automated estimate; compare your response with the model answer.</p>
+      <div class="three">
+        <div><b>${pct}%</b><span>Score</span></div>
+        <div><b>${rows.filter(x=>x.ok).length}</b><span>Fully correct</span></div>
+        <div><b>${fmt(e.left)}</b><span>Time left</span></div>
+      </div>
+      <p style="margin-top:18px">
+        <button onclick="active=${e.uid};go('study')">Review notes</button>
+        <button class="gold" onclick="active=${e.uid};go('exam')">Try again</button>
+      </p>
+    </div>
+    <div class="head">
+      <label>DETAILED ANSWER REVIEW</label>
+      <h2>Corrections and Explanations</h2>
+      <p class="muted">Each question shows your answer, the correct answer, and the reason / explanation.</p>
+    </div>
+    ${rows.map((x,j) => `
+      <article class="q review-q">
+        <div class="qtop">
+          QUESTION ${j+1} · ${x.m} / ${x.max} MARKS · 
+          <span class="${x.ok?'text-good':'text-bad'}">${x.ok?'✓ Correct':'✗ Incorrect'}</span>
+        </div>
+        <h3>${x.q.q}</h3>
+        <div class="review-block">
+          <div class="review-line">
+            <span class="review-label">Your answer</span>
+            <span class="review-ans ${x.ok?'good':'bad'}">${studentAnswerText(x.q, x.a)}</span>
+          </div>
+          ${!x.ok ? `
+          <div class="review-line">
+            <span class="review-label">Correct answer</span>
+            <span class="review-ans correct">${correctAnswerText(x.q)}</span>
+          </div>` : ''}
+          <div class="review-why">
+            <b>Why / explanation:</b> ${x.q.why}
+          </div>
+        </div>
+      </article>`).join('')}`;
+  scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
